@@ -1,0 +1,154 @@
+.formContainer {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 2rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    label {
+      font-weight: bold;
+    }
+  
+    input,
+    select,
+    button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  
+    button {
+      background-color: #00b4d8;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #0077b6;
+      }
+    }
+  
+    .toggleButton {
+      background-color: #f1f1f1;
+      color: #00b4d8;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+  
+    .servicesSelect {
+      display: block;
+      margin-top: 1rem;
+    }
+  }.formContainer {
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .formTitle {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .formLabel {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .formInput,
+  .servicesSelect,
+  .submitButton {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+  }
+  
+  .formInput,
+  .servicesSelect {
+    background-color: #f8f8f8;
+  }
+  
+  .formInput:focus,
+  .servicesSelect:focus {
+    border-color: #00b4d8;
+    outline: none;
+  }
+  
+  .servicesSelect {
+    display: block;
+    margin-top: 1rem;
+    min-height: 100px;
+  }
+  
+  .toggleButton {
+    background-color: #00b4d8;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .toggleButton:hover {
+    background-color: #0077b6;
+  }
+  
+  .submitButton {
+    background-color: #00b4d8;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+  }
+  
+  .submitButton:hover {
+    background-color: #0077b6;
+  }
+  
+  

@@ -1,0 +1,238 @@
+/* Colors */
+$primary-blue: #00b4d8;
+$secondary-blue: #0077b6;
+$dark-blue: #00244b;
+$white: #ffffff;
+$light-gray: #f9f9f9;
+
+.footer {
+  background: linear-gradient(135deg, darken($dark-blue, 15%), darken($secondary-blue, 25%));
+  color: $white;
+  padding: 4rem 0 0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, $primary-blue, $secondary-blue);
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.brandInfo {
+  .brandName {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, $white, $light-gray);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .brandTagline {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: rgba($white, 0.8);
+  }
+
+  .contactInfo {
+    p {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      color: rgba($white, 0.9);
+      line-height: 1.6;
+    }
+  }
+}
+
+.icon {
+  margin-right: 0.8rem;
+  color: $primary-blue;
+  min-width: 20px;
+  font-size: 1rem;
+}
+
+.linksTitle {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: $primary-blue;
+  }
+}
+
+.link {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: rgba($white, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 1rem;
+
+  &::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: $primary-blue;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    color: $white;
+    padding-left: 1.5rem;
+
+    &::before {
+      opacity: 1;
+      left: 0.2rem;
+    }
+  }
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba($white, 0.1);
+  border-radius: 50%;
+  color: $white;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $primary-blue;
+    transform: translateY(-3px);
+  }
+}
+
+.socialIconSvg {
+  font-size: 1rem;
+}
+
+.newsletter {
+  p {
+    margin-bottom: 1rem;
+    color: rgba($white, 0.8);
+    font-size: 0.95rem;
+  }
+}
+
+.newsletterForm {
+  display: flex;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+
+  input {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    background: rgba($white, 0.9);
+  }
+
+  button {
+    background: $primary-blue;
+    color: $white;
+    border: none;
+    padding: 0 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: darken($primary-blue, 10%);
+    }
+  }
+}
+
+.newsletterIcon {
+  font-size: 1rem;
+}
+
+.copyright {
+  border-top: 1px solid rgba($white, 0.1);
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: center;
+  color: rgba($white, 0.6);
+  font-size: 0.9rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.legalLinks {
+  display: flex;
+  gap: 1.5rem;
+
+  a {
+    color: rgba($white, 0.6);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $primary-blue;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .linksTitle {
+    margin-bottom: 1rem;
+  }
+
+  .newsletterForm {
+    max-width: 100%;
+  }
+}
