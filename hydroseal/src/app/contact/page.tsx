@@ -15,7 +15,7 @@ const ContactPage = () => {
       <div className={styles.hero}>
         <h1 data-aos="fade-up">Get In Touch</h1>
         <p data-aos="fade-up" data-aos-delay="100">
-          We're ready to help with all your water tank needs. Reach out today.
+          We&apos;re ready to help with all your water tank needs. Reach out today.
         </p>
       </div>
       
@@ -35,7 +35,7 @@ const ContactPage = () => {
               <option value="">Select Service</option>
               <option value="repair">Tank Repair</option>
               <option value="construction">Tank Construction</option>
-              <option value="cleaning">Cleaning & Disinfection</option>
+              <option value="cleaning">Cleaning &amp; Disinfection</option>
               <option value="waterproofing">Waterproofing</option>
             </select>
           </div>

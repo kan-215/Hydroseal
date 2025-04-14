@@ -33,7 +33,7 @@ const Testimonials = () => {
         <div className={styles.testimonialsGrid}>
           {testimonials.map((testimonial, index) => (
             <div key={index} className={styles.testimonialCard}>
-              <div className={styles.quoteIcon}>"</div>
+              <div className={styles.quoteIcon}>&ldquo;</div>
               <p className={styles.testimonialText}>{testimonial.quote}</p>
               <div className={styles.testimonialMeta}>
                 <span className={styles.author}>{testimonial.author}</span>

@@ -1,18 +1,16 @@
-$primary-color: #007bff;
-$accent-color: #0a5783;
-$dark: #222;
-$light: #f5f5f5;
+// Color variables
+$primary-color: #0066cc;
+$text-primary: #333;
+$text-secondary: #666;
+$light-bg: #f9f9f9;
+$primary-blue: #00b4d8;
+$secondary-blue: #0077b6;
+$dark-blue: #00244b;
+$white: #ffffff;
+$light-gray: #f9f9f9;
+$light-blue: #d3e6f5;
+$medium-blue: #005783;
 
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 992px;
-
-@mixin respond-to($breakpoint) {
-  @if $breakpoint == sm {
-    @media (max-width: $breakpoint-sm) { @content; }
-  } @else if $breakpoint == md {
-    @media (max-width: $breakpoint-md) { @content; }
-  } @else if $breakpoint == lg {
-    @media (max-width: $breakpoint-lg) { @content; }
-  }
-}
+// Breakpoints
+$mobile: 768px;
+$tablet: 1024px;

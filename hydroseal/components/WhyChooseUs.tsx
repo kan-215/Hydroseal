@@ -34,7 +34,7 @@ const WhyChooseUs = () => {
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Why Choose Hydroseal Innovations?</h2>
-          <p className={styles.sectionSubtitle}>Kenya's trusted water tank specialists</p>
+          <p className={styles.sectionSubtitle}>Kenya&apos;s trusted water tank specialists</p>
         </div>
         
         <div className={styles.benefitsGrid}>

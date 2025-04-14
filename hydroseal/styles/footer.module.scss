@@ -6,7 +6,10 @@ $white: #ffffff;
 $light-gray: #f9f9f9;
 
 .footer {
-  background: linear-gradient(135deg, darken($dark-blue, 15%), darken($secondary-blue, 25%));
+  background: linear-gradient(135deg, 
+    darken($dark-blue, 15%),
+    darken($secondary-blue, 25%)
+  );
   color: $white;
   padding: 4rem 0 0;
   position: relative;

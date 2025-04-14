@@ -11,7 +11,7 @@ const ProblemsWeSolve = () => {
     {
       icon: '⚠️',
       title: 'Health Risks',
-      description: 'Contaminated water risking your family\'s health',
+      description: 'Contaminated water risking your family&apos;s health',
       solution: 'Professional cleaning & disinfection for safe drinking water'
     },
     {
@@ -28,7 +28,7 @@ const ProblemsWeSolve = () => {
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Key Problems We Solve</h2>
           <p className={styles.sectionSubtitle}>
-            Hydroseal Innovations delivers expert solutions tailored to Kenya's water storage challenges
+            Hydroseal Innovations delivers expert solutions tailored to Kenya&apos;s water storage challenges
           </p>
         </div>
         

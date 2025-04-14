@@ -25,7 +25,7 @@ const Portfolio = () => {
       id: 3,
       title: "Waterproofing Solution",
       description: "Applied protective coatings to prevent future leaks",
-      image: "/waterproofing.jpg",
+      image: "/waterproofing1.jpeg",
       tags: ["Waterproofing", "Maintenance"]
     },
     {
@@ -46,7 +46,7 @@ const Portfolio = () => {
       id: 6,
       title: "Platform Construction",
       description: "Built stable elevated platforms for water tanks",
-      image: "/platform.jpg",
+      image: "/platform.jpeg",
       tags: ["Platform", "Construction"]
     }
   ];

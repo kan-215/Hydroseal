@@ -43,7 +43,7 @@ const AboutPage = () => {
           <div className={styles.vision} data-aos="fade-up" data-aos-delay="200">
             <h2>Our Vision</h2>
             <p>
-              To be East Africa's premier water storage solutions provider, recognized for innovation, 
+              To be East Africa&apos;s premier water storage solutions provider, recognized for innovation, 
               quality craftsmanship, and exceptional customer service.
             </p>
           </div>

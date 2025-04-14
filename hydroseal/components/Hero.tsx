@@ -33,7 +33,7 @@ const projects = [
   },
   { 
     id: 4, 
-    src: '/steel2.jpg', 
+    src: '/steel-tank.jpeg', 
     alt: 'Steel Water Tanks', 
     title: 'Steel Tank Solutions',
     desc: 'Durable steel water tanks',
@@ -55,10 +55,8 @@ const Hero = () => {
   const galleryRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Duplicate projects for seamless looping
   const duplicatedProjects = [...projects, ...projects];
 
-  // Handle navigation
   const handlePrev = () => {
     setIsAutoScrolling(false);
     setCurrentIndex(prev => (prev === 0 ? projects.length - 1 : prev - 1));
@@ -71,7 +69,6 @@ const Hero = () => {
     setTimeout(() => setIsAutoScrolling(true), 5000);
   };
 
-  // Auto-scroll gallery
   useEffect(() => {
     if (!isAutoScrolling) return;
     
@@ -81,7 +78,6 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [isAutoScrolling]);
 
-  // Scroll down functionality
   const handleScrollDown = () => {
     window.scrollTo({
       top: window.innerHeight,
@@ -109,7 +105,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Kenya's premier experts in concrete and steel water tank solutions since 2015
+            Kenya&apos;s premier experts in concrete and steel water tank solutions since 2015
           </motion.p>
           
           <motion.div 
@@ -166,7 +162,7 @@ const Hero = () => {
                   href={project.link} 
                   className={styles.projectLink}
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent card click from interfering
+                    e.stopPropagation();
                   }}
                 >
                   View Details
