@@ -3,7 +3,7 @@ import styles from '../../../styles/contact.module.scss';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaPaperPlane } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaPaperPlane, FaClock } from 'react-icons/fa';
 
 const ContactPage = () => {
   useEffect(() => {
@@ -13,64 +13,81 @@ const ContactPage = () => {
   return (
     <div className={styles.contact}>
       <div className={styles.hero}>
-        <h1 data-aos="fade-up">Get In Touch</h1>
+        <h1 data-aos="fade-up">Get in Touch with Hydroseal Innovations</h1>
         <p data-aos="fade-up" data-aos-delay="100">
-          We&apos;re ready to help with all your water tank needs. Reach out today.
+          Ready to design a new water tank or fix an existing one? Contact Hydroseal Innovations today for expert advice and fast service anywhere in Kenya.
         </p>
       </div>
       
       <div className={styles.grid}>
         <form data-aos="fade-right" className={styles.form}>
           <div className={styles.formGroup}>
-            <input type="text" placeholder="Full Name" required />
+            <input type="text" placeholder="Name" required />
           </div>
           <div className={styles.formGroup}>
-            <input type="email" placeholder="Email Address" required />
+            <input type="email" placeholder="Email" required />
           </div>
           <div className={styles.formGroup}>
-            <input type="tel" placeholder="Phone Number" />
+            <input type="tel" placeholder="Phone" />
           </div>
           <div className={styles.formGroup}>
-            <select>
-              <option value="">Select Service</option>
-              <option value="repair">Tank Repair</option>
-              <option value="construction">Tank Construction</option>
-              <option value="cleaning">Cleaning &amp; Disinfection</option>
+            <select required>
+              <option value="">Service Needed</option>
+              <option value="repair">Repair</option>
+              <option value="design">Design & Construction</option>
               <option value="waterproofing">Waterproofing</option>
+              <option value="cleaning">Cleaning</option>
+              <option value="disinfecting">Disinfecting</option>
+              <option value="neutralizing">Neutralizing</option>
             </select>
           </div>
           <div className={styles.formGroup}>
-            <textarea placeholder="Your Message" required rows={5} />
+            <textarea placeholder="Message" required rows={5} />
           </div>
           <button type="submit" className={styles.submitButton}>
             <FaPaperPlane className={styles.icon} />
-            Send Message
+            Submit Inquiry
           </button>
         </form>
 
         <div className={styles.info} data-aos="fade-left">
           <div className={styles.contactCard}>
-            <h3>Our Office</h3>
-            <div className={styles.contactItem}>
-              <FaMapMarkerAlt className={styles.contactIcon} />
-              <div>
-                <p className={styles.contactLabel}>Address</p>
-                <p>Gatakaini House 2, Tom Mboya Street<br />Nairobi, Kenya</p>
-              </div>
-            </div>
+            <h3>Contact Details</h3>
             <div className={styles.contactItem}>
               <FaPhone className={styles.contactIcon} />
               <div>
-                <p className={styles.contactLabel}>Phone</p>
-                <p><a href="tel:+254799087048">+254 799 087 048</a></p>
+                <p>+254 799087048</p>
               </div>
             </div>
             <div className={styles.contactItem}>
               <FaEnvelope className={styles.contactIcon} />
               <div>
-                <p className={styles.contactLabel}>Email</p>
-                <p><a href="mailto:hydrosealinnovations@gmail.com">hydrosealinnovations@gmail.com</a></p>
+                <p>hydrosealinnovations@gmail.com</p>
               </div>
+            </div>
+            <div className={styles.contactItem}>
+              <FaMapMarkerAlt className={styles.contactIcon} />
+              <div>
+                <p>Gatakaini House 2, Tom Mboya street<br />Nairobi, Kenya</p>
+              </div>
+            </div>
+            <div className={styles.contactItem}>
+              <FaClock className={styles.contactIcon} />
+              <div>
+                <p>Monday - Saturday<br />8:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.socialLinks}>
+            <h3>Follow Us</h3>
+            <div className={styles.socialIcons}>
+              <a href="https://twitter.com/hydrosealinno" target="_blank" rel="noopener noreferrer">X</a>
+              <a href="https://facebook.com/HydrosealInnovations" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://instagram.com/hydro.sealinnovations" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://tiktok.com/@hydrosealinnovati" target="_blank" rel="noopener noreferrer">TikTok</a>
+              <a href="https://linkedin.com/company/HydrosealInnovations" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://wa.me/254799087048" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             </div>
           </div>
 
@@ -78,7 +95,7 @@ const ContactPage = () => {
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8135999999996!2d36.8219!3d-1.2916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMjkuOCJTIDM2wrA0OScxOS4xIkU!5e0!3m2!1sen!2ske!4v1620000000000!5m2!1sen!2ske"
               width="100%"
-              height="400"
+              height="300"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"

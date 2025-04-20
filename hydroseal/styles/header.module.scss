@@ -1,7 +1,7 @@
 // Colors
-$primary-blue: #0a5783;
+$primary-blue: #0e1b4d; // Updated to match logo background
 $white: #ffffff;
-$hover-blue: #0077b6;
+$hover-blue: #1a56db;
 $mobile-breakpoint: 768px;
 
 // Header Styles
@@ -11,17 +11,19 @@ $mobile-breakpoint: 768px;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba($primary-blue, 0.9);
-  backdrop-filter: blur(10px);
-  padding: 1rem 0;
+  background: rgba($primary-blue, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.2rem 0;
   color: $white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   &.scrolled {
     background: rgba($primary-blue, 0.98);
-    padding: 0.6rem 0;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    padding: 0.8rem 0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -37,22 +39,26 @@ $mobile-breakpoint: 768px;
 
 .logoLink {
   text-decoration: none;
-}
-
-.logoInner {
+  transition: transform 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  transition: transform 0.3s ease;
 
   &:hover {
     transform: scale(1.02);
   }
 }
 
+.logoInner {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
 .logoImage {
-  border-radius: 8px;
+  border-radius: 10px;
   object-fit: contain;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logoText {
@@ -61,18 +67,20 @@ $mobile-breakpoint: 768px;
 }
 
 .logoMain {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: $white;
   line-height: 1.2;
   text-decoration: none;
+  letter-spacing: 0.5px;
 }
 
 .logoSub {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 400;
-  color: rgba($white, 0.8);
-  letter-spacing: 1px;
+  color: rgba($white, 0.85);
+  letter-spacing: 0.5px;
+  margin-top: 0.2rem;
 }
 
 .menuToggle {
@@ -83,6 +91,11 @@ $mobile-breakpoint: 768px;
   cursor: pointer;
   z-index: 1001;
   padding: 0.5rem;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   @media (max-width: $mobile-breakpoint) {
     display: block;
@@ -92,23 +105,24 @@ $mobile-breakpoint: 768px;
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  transition: all 0.3s ease;
+  gap: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (max-width: $mobile-breakpoint) {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 300px;
+    width: 85%;
+    max-width: 320px;
     height: 100vh;
-    background: $primary-blue;
+    background: $primary-blue; // Will match logo background on mobile menu too
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    gap: 2.5rem;
     padding: 2rem;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     &.navOpen {
       right: 0;
@@ -118,12 +132,13 @@ $mobile-breakpoint: 768px;
 
 .navLink {
   position: relative;
-  color: $white;
+  color: rgba($white, 0.9);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
   padding: 0.5rem 0;
+  letter-spacing: 0.3px;
 
   &::after {
     content: '';
@@ -132,7 +147,7 @@ $mobile-breakpoint: 768px;
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #00b4d8, $hover-blue);
+    background: linear-gradient(90deg, #3b82f6, $hover-blue);
     transition: width 0.3s ease;
   }
 
@@ -145,8 +160,22 @@ $mobile-breakpoint: 768px;
   }
 
   @media (max-width: $mobile-breakpoint) {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     padding: 0.5rem 1rem;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+
+    .navOpen & {
+      opacity: 1;
+      transform: translateX(0);
+
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          transition-delay: $i * 0.1s;
+        }
+      }
+    }
 
     &::after {
       display: none;
@@ -155,37 +184,81 @@ $mobile-breakpoint: 768px;
 }
 
 .quoteButton {
-  background: linear-gradient(90deg, #00b4d8, $hover-blue);
+  background: linear-gradient(90deg, #3b82f6, $hover-blue);
   color: $white;
-  padding: 0.6rem 1.5rem;
-  border-radius: 30px;
+  padding: 0.7rem 1.8rem;
+  border-radius: 8px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 180, 216, 0.3);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
   text-decoration: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+  }
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 
   @media (max-width: $mobile-breakpoint) {
     margin-top: 1rem;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+
+    .navOpen & {
+      opacity: 1;
+      transform: translateX(0);
+      transition-delay: 0.5s;
+    }
   }
 }
 
-// Backdrop for mobile menu
-.navOpen + .menuBackdrop {
+// Mobile menu backdrop
+.menuBackdrop {
+  display: none;
+  
   @media (max-width: $mobile-breakpoint) {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
     z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }

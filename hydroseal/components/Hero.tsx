@@ -95,8 +95,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span>Welcome to</span>
-            <span>Hydroseal Innovations</span>
+            Welcome to Hydroseal Innovations
           </motion.h1>
           
           <motion.p 
@@ -105,7 +104,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Kenya&apos;s premier experts in concrete and steel water tank solutions since 2015
+            Secure your water supply with Kenya's premier experts in concrete and steel water tank design, construction, platform building, repair, and maintenance. From custom tank designs to sturdy platforms and leak repairs, we provide innovative, reliable solutions for all your water storage needs.
           </motion.p>
           
           <motion.div 
@@ -115,11 +114,9 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Link href="/quote" className={styles.ctaPrimary}>
-              Get a Free Quote
+              Get a Free Quote Today
             </Link>
-            <Link href="/services" className={styles.ctaSecondary}>
-              View Services
-            </Link>
+            <p className={styles.subtext}>Serving residential, commercial, and industrial clients across Kenya.</p>
           </motion.div>
         </div>
       </div>

@@ -28,7 +28,7 @@ const Header = () => {
           <Link href="/" className={styles.logoLink}>
             <div className={styles.logoInner}>
               <Image
-                src="/logo2.jpg"
+                src="/logo.jpg"
                 alt="Hydroseal Innovations Logo"
                 width={50}
                 height={50}
@@ -36,7 +36,7 @@ const Header = () => {
               />
               <div className={styles.logoText}>
                 <span className={styles.logoMain}>Hydroseal Innovations</span>
-                <span className={styles.logoSub}>Water Tank Specialists</span>
+                <span className={styles.logoSub}>Effective Concrete and Steel Water Tank Repair, Cleaning & Disinfection</span>
               </div>
             </div>
           </Link>
@@ -55,7 +55,7 @@ const Header = () => {
           <Link href="/services" className={styles.navLink} onClick={() => setIsOpen(false)}>Services</Link>
           <Link href="/about" className={styles.navLink} onClick={() => setIsOpen(false)}>About</Link>
           <Link href="/contact" className={styles.navLink} onClick={() => setIsOpen(false)}>Contact</Link>
-          <Link href="/quote" className={styles.quoteButton} onClick={() => setIsOpen(false)}>Get Quote</Link>
+          <Link href="/quote" className={styles.quoteButton} onClick={() => setIsOpen(false)}>Get Free Quote</Link>
         </nav>
       </div>
     </header>

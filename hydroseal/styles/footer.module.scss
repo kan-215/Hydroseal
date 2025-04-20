@@ -1,4 +1,4 @@
-/* Colors */
+// Colors
 $primary-blue: #00b4d8;
 $secondary-blue: #0077b6;
 $dark-blue: #00244b;
@@ -7,8 +7,8 @@ $light-gray: #f9f9f9;
 
 .footer {
   background: linear-gradient(135deg, 
-    darken($dark-blue, 15%),
-    darken($secondary-blue, 25%)
+    #010911, 
+    #020608  
   );
   color: $white;
   padding: 4rem 0 0;
@@ -184,7 +184,7 @@ $light-gray: #f9f9f9;
     justify-content: center;
 
     &:hover {
-      background: darken($primary-blue, 10%);
+      background: #0099c7; // Manually darkened primary-blue
     }
   }
 }
