@@ -1,7 +1,7 @@
 // Colors
 $dark-blue: #00244b;
-$medium-blue: #005783;
-$primary-blue: #00b4d84d;
+$medium-blue: #0f80ed85;
+$primary-blue: #000ed8;
 $secondary-blue: #0077b6;
 $white: #ffffff;
 $light-blue: #d3e6f5;
@@ -170,12 +170,11 @@ $tablet: 1024px;
   }
 }
 
-// Project Gallery
 .projectGallery {
   position: relative;
   height: 300px;
   width: 100%;
-  background: rgba($dark-blue, 0.8);
+  background: rgba($dark-blue, 0.7);
   backdrop-filter: blur(5px);
   border-top: 2px solid $primary-blue;
   overflow: hidden;

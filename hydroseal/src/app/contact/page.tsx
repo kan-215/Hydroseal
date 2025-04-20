@@ -3,7 +3,19 @@ import styles from '../../../styles/contact.module.scss';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaPaperPlane, FaClock } from 'react-icons/fa';
+import { 
+  FaMapMarkerAlt, 
+  FaPhone, 
+  FaEnvelope, 
+  FaPaperPlane, 
+  FaClock,
+  FaTwitter,
+  FaFacebookF,
+  FaInstagram,
+  FaTiktok,
+  FaLinkedinIn,
+  FaWhatsapp
+} from 'react-icons/fa';
 
 const ContactPage = () => {
   useEffect(() => {
@@ -82,12 +94,24 @@ const ContactPage = () => {
           <div className={styles.socialLinks}>
             <h3>Follow Us</h3>
             <div className={styles.socialIcons}>
-              <a href="https://twitter.com/hydrosealinno" target="_blank" rel="noopener noreferrer">X</a>
-              <a href="https://facebook.com/HydrosealInnovations" target="_blank" rel="noopener noreferrer">Facebook</a>
-              <a href="https://instagram.com/hydro.sealinnovations" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://tiktok.com/@hydrosealinnovati" target="_blank" rel="noopener noreferrer">TikTok</a>
-              <a href="https://linkedin.com/company/HydrosealInnovations" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href="https://wa.me/254799087048" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="https://twitter.com/hydrosealinno" target="_blank" rel="noopener noreferrer">
+                <FaTwitter />
+              </a>
+              <a href="https://facebook.com/HydrosealInnovations" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF />
+              </a>
+              <a href="https://instagram.com/hydro.sealinnovations" target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+              <a href="https://tiktok.com/@hydrosealinnovati" target="_blank" rel="noopener noreferrer">
+                <FaTiktok />
+              </a>
+              <a href="https://linkedin.com/company/HydrosealInnovations" target="_blank" rel="noopener noreferrer">
+                <FaLinkedinIn />
+              </a>
+              <a href="https://wa.me/254799087048" target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp />
+              </a>
             </div>
           </div>
 
