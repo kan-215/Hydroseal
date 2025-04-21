@@ -25,7 +25,7 @@ const projects = [
   },
   { 
     id: 3, 
-    src: '/platform1.jpg', 
+    src: '/plat.jpeg', 
     alt: 'Tank Platform Construction', 
     title: 'Platform Construction',
     desc: 'Sturdy elevated tank platforms',
@@ -33,7 +33,7 @@ const projects = [
   },
   { 
     id: 4, 
-    src: '/steel-tank.jpeg', 
+    src: '/steel4.jpeg', 
     alt: 'Steel Water Tanks', 
     title: 'Steel Tank Solutions',
     desc: 'Durable steel water tanks',
