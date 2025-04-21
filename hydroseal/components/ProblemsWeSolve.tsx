@@ -15,7 +15,7 @@ const ProblemsWeSolve = () => {
             <li>Need a custom tank or stable platform?</li>
           </ul>
           <p className={styles.solutionStatement}>
-            Hydroseal Innovations delivers expert solutions tailored to Kenya's water storage challenges.
+            Hydroseal Innovations delivers expert solutions tailored to Kenya&apos;s water storage challenges.
           </p>
         </div>
       </div>

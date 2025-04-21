@@ -20,7 +20,7 @@ const AboutPage = () => {
           <div className={styles.mission} data-aos="fade-up">
             <h2>Our Mission</h2>
             <p>
-              At Hydroseal Innovations, we're transforming water storage in Kenya. From designing custom tanks and building solid platforms to repairing and maintaining existing systems, we ensure safe, efficient water access for all. Water is life, and we make it last with expert solutions.
+              At Hydroseal Innovations, we&apos;re transforming water storage in Kenya. From designing custom tanks and building solid platforms to repairing and maintaining existing systems, we ensure safe, efficient water access for all. Water is life, and we make it last with expert solutions.
             </p>
           </div>
 

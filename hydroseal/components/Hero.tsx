@@ -1,10 +1,10 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaArrowLeft, FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from '../styles/hero.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const projects = [
   { 
@@ -52,10 +52,14 @@ const projects = [
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(80);
 
-  const duplicatedProjects = [...projects, ...projects];
+  useEffect(() => {
+    const header = document.querySelector('header');
+    if (header) {
+      setHeaderHeight(header.offsetHeight);
+    }
+  }, []);
 
   const handlePrev = () => {
     setIsAutoScrolling(false);
@@ -80,136 +84,156 @@ const Hero = () => {
 
   const handleScrollDown = () => {
     window.scrollTo({
-      top: window.innerHeight,
+      top: window.innerHeight - headerHeight,
       behavior: 'smooth'
     });
   };
 
   return (
-    <section className={styles.hero} ref={heroRef}>
-      <div className={styles.overlay}>
-        <div className={styles.container}>
-          <motion.h1 
-            className={styles.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Welcome to Hydroseal Innovations
-          </motion.h1>
-          
-          <motion.p 
-            className={styles.description}
+    <section 
+      className={styles.hero}
+      style={{ 
+        paddingTop: `${headerHeight}px`,
+        minHeight: `calc(100vh - ${headerHeight}px)`
+      }}
+    >
+      <div className={styles.heroContainer}>
+        <div className={styles.heroContent}>
+          <motion.div 
+            className={styles.textContent}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Secure your water supply with Kenya's premier experts in concrete and steel water tank design, construction, platform building, repair, and maintenance. From custom tank designs to sturdy platforms and leak repairs, we provide innovative, reliable solutions for all your water storage needs.
-          </motion.p>
-          
-          <motion.div 
-            className={styles.ctaGroup}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Link href="/quote" className={styles.ctaPrimary}>
-              Get a Free Quote Today
-            </Link>
-            <p className={styles.subtext}>Serving residential, commercial, and industrial clients across Kenya.</p>
-          </motion.div>
-        </div>
-      </div>
-
-      <div className={styles.projectGallery}>
-        <div 
-          className={styles.galleryTrack}
-          ref={galleryRef}
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          onMouseEnter={() => setIsAutoScrolling(false)}
-          onMouseLeave={() => setIsAutoScrolling(true)}
-        >
-          {duplicatedProjects.map((project, index) => (
-            <motion.div 
-              key={`${project.id}-${index}`}
-              className={styles.projectCard}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 0.6,
-                type: 'spring',
-                stiffness: 100
-              }}
-              whileHover={{ scale: 1.05 }}
+            <motion.h1 
+              className={styles.title}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
             >
-              <div className={styles.imageContainer}>
-                <Image
-                  src={project.src}
-                  alt={project.alt}
-                  fill
-                  className={styles.projectImage}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  priority
-                />
-              </div>
-              <div className={styles.projectOverlay}>
-                <h3>{project.title}</h3>
-                <p>{project.desc}</p>
-                <Link 
-                  href={project.link} 
-                  className={styles.projectLink}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                >
-                  View Details
+              Welcome to <span className={styles.highlight}>Hydroseal Innovations</span>
+            </motion.h1>
+            
+            <motion.p 
+              className={styles.description}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Secure your water supply with Kenya&apos;s premier experts in concrete and steel water tank design, 
+              construction, platform building, repair, and maintenance.
+            </motion.p>
+            
+            <motion.div 
+              className={styles.ctaGroup}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <div className={styles.buttons}>
+                <Link href="/quote" className={styles.primaryButton}>
+                  Get a Free Quote
+                </Link>
+                <Link href="/services" className={styles.secondaryButton}>
+                  Our Services
                 </Link>
               </div>
+              <p className={styles.subtext}>
+                Serving residential, commercial, and industrial clients across Kenya.
+              </p>
             </motion.div>
-          ))}
-        </div>
-        <button 
-          className={styles.navButton} 
-          style={{ left: '1rem' }}
-          onClick={(e) => {
-            e.stopPropagation();
-            handlePrev();
-          }}
-          aria-label="Previous project"
-        >
-          <FaArrowLeft />
-        </button>
-        <button 
-          className={styles.navButton} 
-          style={{ right: '1rem' }}
-          onClick={(e) => {
-            e.stopPropagation();
-            handleNext();
-          }}
-          aria-label="Next project"
-        >
-          <FaArrowRight />
-        </button>
-      </div>
+          </motion.div>
 
-      <motion.button 
-        className={styles.scrollIndicator}
-        onClick={handleScrollDown}
-        aria-label="Scroll down"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <span>Scroll Down</span>
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <FaChevronDown className={styles.arrow} />
-        </motion.div>
-      </motion.button>
+          <div className={styles.gallerySection}>
+            <div className={styles.galleryWrapper}>
+              <motion.div 
+                className={styles.gallery}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <div className={styles.slideContainer}>
+                  <motion.div
+                    key={projects[currentIndex].id}
+                    className={styles.slide}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <div className={styles.imageWrapper}>
+                      <Image
+                        src={projects[currentIndex].src}
+                        alt={projects[currentIndex].alt}
+                        fill
+                        className={styles.image}
+                        priority
+                      />
+                      <div className={styles.imageContent}>
+                        <h3>{projects[currentIndex].title}</h3>
+                        <p>{projects[currentIndex].desc}</p>
+                        <Link 
+                          href={projects[currentIndex].link} 
+                          className={styles.detailsButton}
+                        >
+                          View Details <FaChevronRight className={styles.linkIcon} />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                <div className={styles.controls}>
+                  <button 
+                    onClick={handlePrev} 
+                    className={styles.navButton}
+                    aria-label="Previous project"
+                  >
+                    <FaChevronLeft />
+                  </button>
+                  
+                  <div className={styles.dots}>
+                    {projects.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`${styles.dot} ${currentIndex === index ? styles.active : ''}`}
+                        onClick={() => setCurrentIndex(index)}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                  
+                  <button 
+                    onClick={handleNext} 
+                    className={styles.navButton}
+                    aria-label="Next project"
+                  >
+                    <FaChevronRight />
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+
+            <motion.button 
+              className={styles.scrollIndicator}
+              onClick={handleScrollDown}
+              aria-label="Scroll down"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>Explore More</span>
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <FaChevronDown />
+              </motion.div>
+            </motion.button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
