@@ -120,8 +120,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Secure your water supply with Kenya&apos;s premier experts in concrete and steel water tank design, 
-              construction, platform building, repair, and maintenance.
+              Secure your water supply with Kenya’s premier experts in concrete and steel water tank design, construction, platform building, repair, and maintenance. From custom tank designs to sturdy platforms and leak repairs, we provide innovative, reliable solutions for all your water storage needs.
             </motion.p>
             
             <motion.div 

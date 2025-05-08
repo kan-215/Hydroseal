@@ -20,6 +20,34 @@ import {
 const ContactPage = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
+    // Multi-select functionality
+    const select = document.getElementById('services') as HTMLSelectElement;
+    const selectedContainer = document.getElementById('selectedServices');
+
+    const updateSelected = () => {
+      if (!selectedContainer) return;
+      
+      selectedContainer.innerHTML = '';
+      Array.from(select.selectedOptions).forEach(option => {
+        const tag = document.createElement('span');
+        tag.textContent = option.text;
+        
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = '×';
+        removeBtn.onclick = (e) => {
+          e.preventDefault();
+          option.selected = false;
+          updateSelected();
+        };
+        
+        tag.appendChild(removeBtn);
+        selectedContainer.appendChild(tag);
+      });
+    };
+
+    select?.addEventListener('change', updateSelected);
+    return () => select?.removeEventListener('change', updateSelected);
   }, []);
 
   return (
@@ -43,15 +71,24 @@ const ContactPage = () => {
             <input type="tel" placeholder="Phone" />
           </div>
           <div className={styles.formGroup}>
-            <select required>
-              <option value="">Service Needed</option>
-              <option value="repair">Repair</option>
-              <option value="design">Design & Construction</option>
-              <option value="waterproofing">Waterproofing</option>
-              <option value="cleaning">Cleaning</option>
-              <option value="disinfecting">Disinfecting</option>
-              <option value="neutralizing">Neutralizing</option>
-            </select>
+            <label htmlFor="services">Services Needed (Select multiple)</label>
+            <div className={styles.multiSelectContainer}>
+              <select 
+                id="services"
+                multiple 
+                required
+                className={styles.multiSelect}
+              >
+                <option value="repair">Repair</option>
+                <option value="design">Design & Construction</option>
+                <option value="waterproofing">Waterproofing</option>
+                <option value="cleaning">Cleaning</option>
+                <option value="platform">Platform Construction</option>
+                <option value="disinfecting">Disinfecting</option>
+                <option value="neutralizing">Neutralizing</option>
+              </select>
+              <div className={styles.selectedItems} id="selectedServices"></div>
+            </div>
           </div>
           <div className={styles.formGroup}>
             <textarea placeholder="Message" required rows={5} />

@@ -25,52 +25,35 @@ $text-secondary: #666;
     color: $primary-color;
     margin-bottom: 0.5rem;
   }
-
-  .sectionSubtitle {
-    font-size: 1.1rem;
-    color: $text-secondary;
-  }
 }
 
-.benefitsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+.benefitsList {
   margin-bottom: 3rem;
-}
 
-.benefitCard {
-  background: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
-  &:hover {
-    transform: translateY(-5px);
+    li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      color: $text-primary;
+      line-height: 1.6;
+
+      &::before {
+        content: '✔';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: $primary-color;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+    }
   }
-}
-
-.benefitIcon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.benefitTitle {
-  font-size: 1.3rem;
-  color: $primary-color;
-  margin-bottom: 0.8rem;
-}
-
-.benefitDescription {
-  color: $text-primary;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-}
-
-.benefitDetail {
-  color: $text-secondary;
-  line-height: 1.6;
 }
 
 .ctaContainer {
@@ -107,8 +90,9 @@ $text-secondary: #666;
     }
   }
 
-  .benefitsGrid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .benefitsList {
+    ul {
+      padding-left: 1.5rem; // Adjust spacing for mobile views
+    }
   }
 }
