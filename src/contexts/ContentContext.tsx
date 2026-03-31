@@ -131,8 +131,10 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     } catch (err) {
       console.error('Error fetching content:', err);
     } finally {
+      // ALWAYS set loading to false so the page renders (using defaults if fetch failed)
       setLoading(false);
     }
+
   };
 
   useEffect(() => {
