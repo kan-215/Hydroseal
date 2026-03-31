@@ -111,6 +111,7 @@
         margin-bottom: 25px;
         display: -webkit-box;
         -webkit-line-clamp: 3;
+        line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
@@ -224,17 +225,28 @@
       margin-bottom: 30px;
     }
 
-    ul, ol {
-      margin-bottom: 30px;
-      padding-left: 25px;
+    .listItem {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: flex-start;
 
-      li {
-        margin-bottom: 15px;
-        position: relative;
+      .listMarker {
+        flex-shrink: 0;
+        min-width: 25px;
+        font-weight: 800;
+        color: $dark-blue;
+      }
+
+      .listText {
+        line-height: 1.8;
+        color: #333;
+        flex: 1;
       }
     }
 
     h2, h3 {
+
       color: $dark-blue;
       margin: 50px 0 25px;
       font-family: 'Montserrat', sans-serif;
@@ -335,7 +347,7 @@
 
 @media (max-width: 768px) {
   .blogPage {
-    padding-top: 100px;
+    padding-top: 140px;
 
     .header {
       margin-bottom: 40px;
@@ -349,7 +361,7 @@
   }
 
   .postContainer {
-    padding-top: 120px;
+    padding-top: 150px;
 
     .postHeader {
       margin-bottom: 30px;

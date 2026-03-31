@@ -1,64 +1,99 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .card {
   background: #1e293b;
   border: 1px solid #334155;
-  border-radius: 12px;
-  padding: 1.25rem;
+  border-radius: 16px;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   text-decoration: none;
   color: inherit;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 480px) {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
 
   &:hover {
     border-color: #2563eb;
-    background: #1e3a5f;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+    background: #1e3a5f05;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 
+    .cardIcon { background: #2563eb; color: #fff; transform: scale(1.1); }
     .arrow { opacity: 1; transform: translateX(0); }
   }
 }
 
 .cardIcon {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #60a5fa;
   flex-shrink: 0;
-  background: #1d4ed820;
-  border-radius: 10px;
-  width: 48px;
-  height: 48px;
+  background: #1d4ed815;
+  border-radius: 12px;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+
+  @media (max-width: 480px) {
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+  }
 }
 
 .cardBody {
   flex: 1;
 
   h3 {
-    margin: 0 0 0.2rem;
-    font-size: 0.95rem;
-    font-weight: 600;
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: #f1f5f9;
+
+    @media (max-width: 480px) {
+      font-size: 0.95rem;
+    }
   }
 
   p {
     margin: 0;
-    font-size: 0.8rem;
-    color: #64748b;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.4;
+
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
   }
 }
 
 .arrow {
   color: #60a5fa;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.2s;
+  opacity: 0.4;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
+

@@ -50,16 +50,19 @@ const BlogPost: React.FC = () => {
 
       <div className={styles.postContent} data-aos="fade-up">
         {post.content.map((paragraph, index) => {
-          // If the paragraph is a numbered list item
-          if (/^\d\./.test(paragraph)) {
+          // If the paragraph is a numbered list item (starts with digits followed by a dot)
+          const listMatch = paragraph.match(/^(\d+\.)\s*(.*)/);
+          if (listMatch) {
             return (
               <div key={index} className={styles.listItem}>
-                <strong>{paragraph.substring(0, 2)}</strong> {paragraph.substring(2)}
+                <span className={styles.listMarker}>{listMatch[1]}</span>
+                <span className={styles.listText}>{listMatch[2]}</span>
               </div>
             );
           }
           return <p key={index}>{paragraph}</p>;
         })}
+
       </div>
 
       {post.images && post.images.length > 1 && (

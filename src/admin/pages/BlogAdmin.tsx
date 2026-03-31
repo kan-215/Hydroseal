@@ -3,7 +3,7 @@ import AdminLayout from '../components/AdminLayout';
 import ImageUpload from '../components/ImageUpload';
 import { supabase } from '../../lib/supabase';
 import styles from './Editor.module.scss';
-import { FiPlus, FiTrash2, FiSave, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { FiPlus, FiTrash2, FiSave, FiChevronDown, FiChevronUp, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 
 interface BlogPost {
   id: string;
@@ -36,6 +36,7 @@ const BlogAdmin: React.FC = () => {
   const [toast, setToast] = useState<{ msg: string; type: 'success' | 'error' } | null>(null);
   const [saving, setSaving] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [addingImageTo, setAddingImageTo] = useState<string | null>(null);
 
   const showToast = (msg: string, type: 'success' | 'error' = 'success') => {
     setToast({ msg, type }); setTimeout(() => setToast(null), 3000);
@@ -44,7 +45,11 @@ const BlogAdmin: React.FC = () => {
   const fetchPosts = async () => {
     setLoading(true);
     const { data } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
-    setPosts(data ?? []);
+    const normalized = (data ?? []).map((d: any) => ({
+      ...d,
+      date: d.date_text || d.date
+    }));
+    setPosts(normalized);
     setLoading(false);
   };
 
@@ -58,6 +63,32 @@ const BlogAdmin: React.FC = () => {
       ? { ...p, content: p.content.map((c, i) => i === idx ? val : c) }
       : p
     ));
+
+  const moveGalleryImage = (postId: string, idx: number, dir: -1 | 1) => {
+    setPosts(prev => prev.map(p => {
+      if (p.id !== postId) return p;
+      const images = [...p.images];
+      const newIdx = idx + dir;
+      if (newIdx < 0 || newIdx >= images.length) return p;
+      [images[idx], images[newIdx]] = [images[newIdx], images[idx]];
+      return { ...p, images };
+    }));
+  };
+
+  const removeGalleryImage = (postId: string, idx: number) => {
+    setPosts(prev => prev.map(p => {
+      if (p.id !== postId) return p;
+      return { ...p, images: p.images.filter((_, i) => i !== idx) };
+    }));
+  };
+
+  const addGalleryImage = (postId: string, url: string) => {
+    setPosts(prev => prev.map(p => {
+      if (p.id !== postId) return p;
+      return { ...p, images: [...p.images, url] };
+    }));
+    setAddingImageTo(null);
+  };
 
   const addContentParagraph = (id: string) =>
     setPosts(prev => prev.map(p => p.id === id ? { ...p, content: [...p.content, ''] } : p));
@@ -87,8 +118,6 @@ const BlogAdmin: React.FC = () => {
       date_text: post.date,
     };
 
-
-    // Check if exists
     const { data: existing } = await supabase.from('blog_posts').select('id').eq('id', post.id).maybeSingle();
     let error;
     if (existing) {
@@ -202,15 +231,41 @@ const BlogAdmin: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="admin-field">
-                  <label className="admin-label">Gallery Image URLs (one per line)</label>
-                  <textarea
-                    className="admin-textarea"
-                    rows={3}
-                    value={post.images.join('\n')}
-                    onChange={e => updatePost(post.id, 'images', e.target.value.split('\n').map(s => s.trim()).filter(Boolean))}
-                    placeholder="https://... or /public-path.jpg"
-                  />
+                <div className="admin-field" style={{ marginTop: '2rem' }}>
+                  <label className="admin-label">Blog Photo Gallery</label>
+                  <p style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '1rem' }}>Reorder images by clicking arrows. Images are shown in order at the bottom of the blog post.</p>
+                  
+                  <div className={styles.galleryGrid}>
+                    {post.images.map((url, idx) => (
+                      <div key={idx} className={styles.galleryItem}>
+                        <div className={styles.galleryLabel}>{idx + 1}</div>
+                        <img src={url} alt={`Gallery ${idx}`} className={styles.galleryImage} />
+                        <div className={styles.galleryActions}>
+                          <button className="admin-btn-ghost" onClick={() => moveGalleryImage(post.id, idx, -1)} disabled={idx === 0} title="Move Backward">
+                            <FiArrowLeft />
+                          </button>
+                          <button className="admin-btn-ghost" onClick={() => moveGalleryImage(post.id, idx, 1)} disabled={idx === post.images.length - 1} title="Move Forward">
+                            <FiArrowRight />
+                          </button>
+                          <button className="admin-btn-danger" onClick={() => removeGalleryImage(post.id, idx)} title="Delete Photo">
+                            <FiTrash2 />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+
+                    
+                    <div className={styles.addGalleryItem} onClick={() => setAddingImageTo(post.id)}>
+                      {addingImageTo === post.id ? (
+                        <ImageUpload currentUrl="" folder="blog" onUploaded={(url) => addGalleryImage(post.id, url)} />
+                      ) : (
+                        <div className={styles.addPlaceholder}>
+                          <FiPlus />
+                          <span>Add Photo</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </>
             )}
