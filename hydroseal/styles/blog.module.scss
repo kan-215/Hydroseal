@@ -1,0 +1,382 @@
+@import './variables.scss';
+
+.blogPage {
+  padding: 120px 20px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    h1 {
+      font-size: 3.5rem;
+      color: $dark-blue;
+      margin-bottom: 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    p {
+      font-size: 1.25rem;
+      color: $text-secondary;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+
+  .blogGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
+  }
+
+  .blogCard {
+    background: $white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 102, 204, 0.12);
+      border-color: rgba(0, 102, 204, 0.1);
+    }
+
+    .imageContainer {
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.2));
+        opacity: 0.5;
+      }
+    }
+
+    &:hover .imageContainer img {
+      transform: scale(1.08);
+    }
+
+    .content {
+      padding: 30px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+
+      .date {
+        font-size: 0.8rem;
+        color: $primary-color;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        color: $dark-blue;
+        margin-bottom: 15px;
+        line-height: 1.3;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+      }
+
+      .excerpt {
+        font-size: 1rem;
+        color: $text-secondary;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .readMore {
+        margin-top: auto;
+        font-weight: 700;
+        color: $primary-color;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.95rem;
+
+        &::after {
+          content: '→';
+          transition: transform 0.3s ease;
+          font-size: 1.2rem;
+        }
+      }
+
+      &:hover .readMore::after {
+        transform: translateX(8px);
+      }
+    }
+  }
+}
+
+.postContainer {
+  padding: 140px 20px 80px;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .backBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: $text-secondary;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+
+    svg {
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      color: $primary-color;
+      svg {
+        transform: translateX(-5px);
+      }
+    }
+  }
+
+  .postHeader {
+    margin-bottom: 50px;
+
+    h1 {
+      font-size: 3.2rem;
+      color: $dark-blue;
+      margin-bottom: 25px;
+      line-height: 1.15;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 30px;
+      color: $text-secondary;
+      font-size: 1rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        svg {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .featuredImage {
+    width: 100%;
+    height: 520px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 60px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .postContent {
+    font-size: 1.2rem;
+    line-height: 1.85;
+    color: #333;
+
+    p {
+      margin-bottom: 30px;
+    }
+
+    ul, ol {
+      margin-bottom: 30px;
+      padding-left: 25px;
+
+      li {
+        margin-bottom: 15px;
+        position: relative;
+      }
+    }
+
+    h2, h3 {
+      color: $dark-blue;
+      margin: 50px 0 25px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.8rem; }
+  }
+
+  .imageGallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 60px 0;
+
+    .galleryItem {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 102, 204, 0.15);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .ctaBanner {
+    background: linear-gradient(135deg, $dark-blue, $primary-color);
+    padding: 60px 40px;
+    border-radius: 24px;
+    color: $white;
+    text-align: center;
+    margin-top: 80px;
+    box-shadow: 0 20px 40px rgba(0, 36, 75, 0.2);
+
+    h3 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+    }
+
+    p {
+      margin-bottom: 35px;
+      opacity: 0.9;
+      font-size: 1.2rem;
+    }
+
+    .ctaButtons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .ctaButton {
+      background: $white;
+      color: $dark-blue;
+      padding: 15px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 1.1rem;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        background: #f0f0f0;
+      }
+
+      &.whatsapp {
+        background: #25d366;
+        color: white;
+        
+        &:hover {
+          background: #20b858;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .blogPage {
+    padding-top: 100px;
+
+    .header {
+      margin-bottom: 40px;
+      h1 { font-size: 2.5rem; }
+      p { font-size: 1.1rem; }
+    }
+
+    .blogGrid {
+      gap: 25px;
+    }
+  }
+
+  .postContainer {
+    padding-top: 120px;
+
+    .postHeader {
+      margin-bottom: 30px;
+      h1 { font-size: 2.2rem; }
+      .meta { gap: 15px; font-size: 0.9rem; }
+    }
+
+    .featuredImage {
+      height: 300px;
+      margin-bottom: 40px;
+    }
+
+    .postContent {
+      font-size: 1.1rem;
+      h2 { font-size: 1.8rem; }
+      h3 { font-size: 1.5rem; }
+    }
+
+    .imageGallery {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .ctaBanner {
+      padding: 40px 20px;
+      h3 { font-size: 1.8rem; }
+      .ctaButtons { flex-direction: column; }
+    }
+  }
+}

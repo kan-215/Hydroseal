@@ -1,7 +1,5 @@
-'use client';
-
 import { useState } from 'react'; // Import useState from React
-import styles from '../../../styles/quote.module.scss';
+import styles from '../../styles/quote.module.scss';
 
 const QuotePage = () => {
   // form state variables

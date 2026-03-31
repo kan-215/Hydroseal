@@ -1,26 +1,27 @@
 import styles from '../styles/testimonials.module.scss';
+import { useContent } from '../src/contexts/ContentContext';
+
+const defaultTestimonials = [
+  {
+    text: "Hydroseal repaired our leaking concrete tank in a day! We've saved so much water since. Highly recommended!",
+    name: "Miriam K.",
+    role: "Nairobi",
+  },
+  {
+    text: "Professional service and solid construction. Our elevated steel platform was built in just 3 days.",
+    name: "Peter M.",
+    role: "Kisumu",
+  },
+  {
+    text: "Our company tanks were disinfected and sealed perfectly. Reliable and knowledgeable team.",
+    name: "Diana O.",
+    role: "Eldoret",
+  }
+];
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      quote: "Hydroseal repaired our leaking concrete tank in a day! We've saved so much water since. Highly recommended!",
-      author: "Miriam K.",
-      location: "Nairobi",
-      service: "Tank Repair"
-    },
-    {
-      quote: "Professional service and solid construction. Our elevated steel platform was built in just 3 days.",
-      author: "Peter M.",
-      location: "Kisumu",
-      service: "Platform Construction"
-    },
-    {
-      quote: "Our company tanks were disinfected and sealed perfectly. Reliable and knowledgeable team.",
-      author: "Diana O.",
-      location: "Eldoret",
-      service: "Cleaning & Disinfection"
-    }
-  ];
+  const { testimonials: supabaseTestimonials, loading } = useContent();
+  const testimonials = supabaseTestimonials.length > 0 ? supabaseTestimonials : defaultTestimonials;
 
   return (
     <section className={styles.testimonials}>
@@ -34,11 +35,10 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div key={index} className={styles.testimonialCard}>
               <div className={styles.quoteIcon}>&ldquo;</div>
-              <p className={styles.testimonialText}>{testimonial.quote}</p>
+              <p className={styles.testimonialText}>{testimonial.text}</p>
               <div className={styles.testimonialMeta}>
-                <span className={styles.author}>{testimonial.author}</span>
-                <span className={styles.location}>{testimonial.location}</span>
-                <span className={styles.service}>{testimonial.service}</span>
+                <span className={styles.author}>{testimonial.name}</span>
+                <span className={styles.location}>{testimonial.role}</span>
               </div>
             </div>
           ))}
@@ -47,5 +47,6 @@ const Testimonials = () => {
     </section>
   );
 };
+
 
 export default Testimonials;

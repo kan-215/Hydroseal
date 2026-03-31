@@ -1,0 +1,122 @@
+import { Link } from 'react-router-dom';
+import styles from '../../styles/services.module.scss';
+import AOS from 'aos';
+import { useEffect } from 'react';
+import 'aos/dist/aos.css';
+import * as Icons from 'react-icons/fa';
+import { useContent } from '../contexts/ContentContext';
+
+const defaultServices = [
+  {
+    slug: 'repair',
+    title: 'Tank Repair',
+    description: 'Fix cracks, leaks, and corrosion with expert crack injection, welding, and patching.',
+    icon_name: 'FaTools',
+    keywords: ['water tank repair Kenya', 'concrete tank leak repair', 'steel tank welding']
+  },
+  {
+    slug: 'construction',
+    title: 'Tank Design & Construction',
+    description: 'Custom designs and construction of concrete and steel tanks to meet your specific needs—residential, commercial, or industrial.',
+    icon_name: 'FaBuilding',
+    keywords: ['water tank design Kenya', 'custom tank construction', 'steel tank builders']
+  },
+  {
+    slug: 'platforms',
+    title: 'Water Tank Platform Construction',
+    description: 'Build durable, elevated platforms to support water tanks, ensuring stability and optimal water flow.',
+    icon_name: 'FaWater',
+    keywords: ['water tank platform Kenya', 'tank stand construction', 'elevated tank platforms']
+  },
+  {
+    slug: 'waterproofing',
+    title: 'Waterproofing',
+    description: 'Prevent leaks with advanced coatings and linings for lasting protection.',
+    icon_name: 'FaShieldAlt',
+    keywords: ['tank waterproofing Kenya', 'concrete tank sealing', 'steel tank coatings']
+  },
+  {
+    slug: 'cleaning',
+    title: 'Cleaning',
+    description: 'Remove sediment, algae, and biofilm to restore water quality.',
+    icon_name: 'FaBroom',
+    keywords: ['water tank cleaning Kenya', 'tank maintenance services', 'clean water storage']
+  },
+  {
+    slug: 'disinfecting',
+    title: 'Disinfecting',
+    description: 'Eliminate pathogens for safe, potable water with industry-standard disinfection.',
+    icon_name: 'FaFlask',
+    keywords: ['tank disinfection Kenya', 'water safety solutions', 'potable water treatment']
+  },
+  {
+    slug: 'neutralizing',
+    title: 'Neutralizing',
+    description: 'Protect water purity by treating tank surfaces against chemical leaching.',
+    icon_name: 'FaFilter',
+    keywords: ['tank neutralizing Kenya', 'water quality maintenance', 'safe water storage']
+  }
+];
+
+const ServicesPage = () => {
+  const { services: supabaseServices, loading } = useContent();
+  const services = supabaseServices.length > 0 ? supabaseServices : defaultServices;
+
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
+  const getIcon = (name: string) => {
+    const IconComponent = (Icons as any)[name];
+    return IconComponent ? <IconComponent className={styles.serviceIcon} /> : <Icons.FaTools className={styles.serviceIcon} />;
+  };
+
+  return (
+    <main className={styles.servicesPage}>
+      <section className={styles.hero} data-aos="fade-down">
+        <h1>Comprehensive Water Tank Services in Kenya</h1>
+        <p>At Hydroseal Innovations, we specialize in designing, building, and maintaining concrete and steel water tanks and their platforms. Explore our full range of services to save water, ensure safety, and create robust storage solutions across Kenya.</p>
+      </section>
+
+      <div className={styles.servicesContainer}>
+        <section className={styles.servicesGrid}>
+          {services.map((service, index) => (
+            <div 
+              key={index} 
+              id={service.slug}
+              className={styles.serviceCard}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div className={styles.iconContainer}>
+                {getIcon(service.icon_name)}
+              </div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <div className={styles.keywords}>
+                {service.keywords.map((keyword, i) => (
+                  <span key={i}>{keyword}</span>
+                ))}
+              </div>
+              <Link 
+                to={`/contact?service=${service.slug}`} 
+                className={styles.bookButton}
+              >
+                Book Service
+              </Link>
+            </div>
+          ))}
+        </section>
+      </div>
+
+      <section className={styles.ctaSection} data-aos="fade-up">
+        <p className={styles.subtext}>Need a new tank, platform, or repair? Contact us for fast, affordable solutions.</p>
+        <Link to="/contact" className={styles.ctaButton}>
+          Request Service Now
+        </Link>
+      </section>
+    </main>
+  );
+};
+
+export default ServicesPage;

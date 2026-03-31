@@ -1,4 +1,4 @@
-import styles from '../../../styles/terms.module.scss';
+import styles from '../../styles/terms.module.scss';
 
 const TermsOfServicePage = () => {
   return (

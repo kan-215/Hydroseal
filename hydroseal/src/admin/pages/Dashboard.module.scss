@@ -1,0 +1,64 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #2563eb;
+    background: #1e3a5f;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+
+    .arrow { opacity: 1; transform: translateX(0); }
+  }
+}
+
+.cardIcon {
+  font-size: 1.4rem;
+  color: #60a5fa;
+  flex-shrink: 0;
+  background: #1d4ed820;
+  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardBody {
+  flex: 1;
+
+  h3 {
+    margin: 0 0 0.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f1f5f9;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+}
+
+.arrow {
+  color: #60a5fa;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.2s;
+}

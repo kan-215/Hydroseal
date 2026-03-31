@@ -11,8 +11,8 @@ import {
   FaEnvelope,
   FaPaperPlane
 } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import styles from '../styles/footer.module.scss';
-import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -31,20 +31,21 @@ const Footer = () => {
 
           <div className={styles.links}>
             <h4 className={styles.linksTitle}>Quick Links</h4>
-            <Link href="/" className={styles.link}>Home</Link>
-            <Link href="/services" className={styles.link}>Services</Link>
-            <Link href="/about" className={styles.link}>About Us</Link>
-            <Link href="/contact" className={styles.link}>Contact</Link>
-            <Link href="/quote" className={styles.link}>Get Quote</Link>
+            <Link to="/" className={styles.link}>Home</Link>
+            <Link to="/services" className={styles.link}>Services</Link>
+            <Link to="/about" className={styles.link}>About Us</Link>
+            <Link to="/blog" className={styles.link}>Blog</Link>
+            <Link to="/contact" className={styles.link}>Contact</Link>
+            <Link to="/quote" className={styles.link}>Get Quote</Link>
           </div>
 
           <div className={styles.services}>
             <h4 className={styles.linksTitle}>Our Services</h4>
-            <Link href="/services#repair" className={styles.link}>Tank Repair</Link>
-            <Link href="/services#construction" className={styles.link}>Tank Construction</Link>
-            <Link href="/services#platforms" className={styles.link}>Platform Building</Link>
-            <Link href="/services#waterproofing" className={styles.link}>Waterproofing</Link>
-            <Link href="/services#cleaning" className={styles.link}>Cleaning & Disinfection</Link>
+            <Link to="/services#repair" className={styles.link}>Tank Repair</Link>
+            <Link to="/services#construction" className={styles.link}>Tank Construction</Link>
+            <Link to="/services#platforms" className={styles.link}>Platform Building</Link>
+            <Link to="/services#waterproofing" className={styles.link}>Waterproofing</Link>
+            <Link to="/services#cleaning" className={styles.link}>Cleaning & Disinfection</Link>
           </div>
 
           <div className={styles.social}>
@@ -84,8 +85,8 @@ const Footer = () => {
         <div className={styles.copyright}>
           <p>&copy; {new Date().getFullYear()} Hydroseal Innovations. All rights reserved.</p>
           <div className={styles.legalLinks}>
-            <Link href="/privacy-policy" className={styles.legalLink}>Privacy Policy</Link>
-            <Link href="/terms-of-service" className={styles.legalLink}>Terms of Service</Link>
+            <Link to="/privacy-policy" className={styles.legalLink}>Privacy Policy</Link>
+            <Link to="/terms-of-service" className={styles.legalLink}>Terms of Service</Link>
           </div>
         </div>
       </div>

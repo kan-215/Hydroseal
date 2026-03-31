@@ -1,7 +1,6 @@
 'use client';
 import styles from '../styles/header.module.scss';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 
@@ -25,9 +24,9 @@ const Header = () => {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <Link href="/" className={styles.logoLink}>
+          <Link to="/" className={styles.logoLink}>
             <div className={styles.logoInner}>
-              <Image
+              <img
                 src="/logo.jpg"
                 alt="Hydroseal Innovations Logo"
                 width={50}
@@ -51,11 +50,12 @@ const Header = () => {
         </button>
 
         <nav className={`${styles.nav} ${isOpen ? styles.navOpen : ''}`}>
-          <Link href="/" className={styles.navLink} onClick={() => setIsOpen(false)}>Home</Link>
-          <Link href="/services" className={styles.navLink} onClick={() => setIsOpen(false)}>Services</Link>
-          <Link href="/about" className={styles.navLink} onClick={() => setIsOpen(false)}>About</Link>
-          <Link href="/contact" className={styles.navLink} onClick={() => setIsOpen(false)}>Contact</Link>
-          <Link href="/quote" className={styles.quoteButton} onClick={() => setIsOpen(false)}>Get Free Quote</Link>
+          <Link to="/" className={styles.navLink} onClick={() => setIsOpen(false)}>Home</Link>
+          <Link to="/services" className={styles.navLink} onClick={() => setIsOpen(false)}>Services</Link>
+          <Link to="/about" className={styles.navLink} onClick={() => setIsOpen(false)}>About</Link>
+          <Link to="/blog" className={styles.navLink} onClick={() => setIsOpen(false)}>Blog</Link>
+          <Link to="/contact" className={styles.navLink} onClick={() => setIsOpen(false)}>Contact</Link>
+          <Link to="/quote" className={styles.quoteButton} onClick={() => setIsOpen(false)}>Get Free Quote</Link>
         </nav>
       </div>
     </header>

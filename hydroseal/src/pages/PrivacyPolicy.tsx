@@ -1,4 +1,4 @@
-import styles from '../../../styles/privacy.module.scss';
+import styles from '../../styles/privacy.module.scss';
 
 const PrivacyPolicyPage = () => {
   return (

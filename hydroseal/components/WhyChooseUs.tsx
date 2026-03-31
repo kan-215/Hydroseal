@@ -1,5 +1,5 @@
 import styles from '../styles/whyChooseUs.module.scss';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 const WhyChooseUs = () => {
   return (
@@ -19,7 +19,7 @@ const WhyChooseUs = () => {
         </div>
 
         <div className={styles.ctaContainer}>
-          <Link href="/services" className={styles.primaryButton}>
+          <Link to="/services" className={styles.primaryButton}>
             Explore Our Services
           </Link>
         </div>

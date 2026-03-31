@@ -1,5 +1,4 @@
-'use client';
-import styles from '../../../styles/contact.module.scss';
+import styles from '../../styles/contact.module.scss';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -17,7 +16,12 @@ import {
   FaWhatsapp
 } from 'react-icons/fa';
 
+import { useSearchParams } from 'react-router-dom';
+
 const ContactPage = () => {
+  const [searchParams] = useSearchParams();
+  const serviceParam = searchParams.get('service');
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
 
@@ -26,7 +30,7 @@ const ContactPage = () => {
     const selectedContainer = document.getElementById('selectedServices');
 
     const updateSelected = () => {
-      if (!selectedContainer) return;
+      if (!selectedContainer || !select) return;
       
       selectedContainer.innerHTML = '';
       Array.from(select.selectedOptions).forEach(option => {
@@ -46,9 +50,19 @@ const ContactPage = () => {
       });
     };
 
+    // Pre-select service from URL
+    if (serviceParam && select) {
+      Array.from(select.options).forEach(option => {
+        if (option.value === serviceParam) {
+          option.selected = true;
+        }
+      });
+      updateSelected();
+    }
+
     select?.addEventListener('change', updateSelected);
     return () => select?.removeEventListener('change', updateSelected);
-  }, []);
+  }, [serviceParam]);
 
   return (
     <div className={styles.contact}>

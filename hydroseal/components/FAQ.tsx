@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import styles from '../styles/faq.module.scss'
+import { useContent } from '../src/contexts/ContentContext';
 
 const defaultQuestions = [
   {
@@ -38,11 +40,14 @@ interface FAQProps {
 }
 
 const FAQ = ({ 
-  questions = defaultQuestions, // Default questions now included
+  questions: propQuestions, 
   title = "Frequently Asked Questions", 
   description = "Get answers about our water tank services in Kenya",
   emptyMessage = "We're compiling our most common questions. Check back soon or contact us directly for assistance."
 }: FAQProps) => {
+  const { faqItems, loading } = useContent();
+  const questions = propQuestions || (faqItems.length > 0 ? faqItems : defaultQuestions);
+  
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const toggleQuestion = (index: number) => {
@@ -97,7 +102,7 @@ const FAQ = ({
             </svg>
           </div>
           <p className={styles.emptyMessage}>{emptyMessage}</p>
-          <a href="/contact" className={styles.contactLink}>Contact Us</a>
+          <Link to="/contact" className={styles.contactLink}>Contact Us</Link>
         </div>
       )}
     </section>

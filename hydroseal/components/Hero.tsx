@@ -2,13 +2,13 @@
 import { motion } from 'framer-motion';
 import { FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from '../styles/hero.module.scss';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useContent } from '../src/contexts/ContentContext';
 
-const projects = [
+const defaultSlides = [
   { 
-    id: 1, 
+    id: '1', 
     src: '/concreate.jpg', 
     alt: 'Concrete Water Tank Construction', 
     title: 'Concrete Tank Solutions',
@@ -16,7 +16,7 @@ const projects = [
     link: '/services#concrete-tanks'
   },
   { 
-    id: 2, 
+    id: '2', 
     src: '/construction1.jpg', 
     alt: 'Water Tank Installation', 
     title: 'New Tank Installation',
@@ -24,7 +24,7 @@ const projects = [
     link: '/services#installation'
   },
   { 
-    id: 3, 
+    id: '3', 
     src: '/plat.jpeg', 
     alt: 'Tank Platform Construction', 
     title: 'Platform Construction',
@@ -32,7 +32,7 @@ const projects = [
     link: '/services#platforms'
   },
   { 
-    id: 4, 
+    id: '4', 
     src: '/steel4.jpeg', 
     alt: 'Steel Water Tanks', 
     title: 'Steel Tank Solutions',
@@ -40,7 +40,7 @@ const projects = [
     link: '/services#steel-tanks'
   },
   { 
-    id: 5, 
+    id: '5', 
     src: '/waterproofing.jpg', 
     alt: 'Tank Waterproofing', 
     title: 'Waterproofing Services',
@@ -50,6 +50,9 @@ const projects = [
 ];
 
 const Hero = () => {
+  const { heroSlides, loading } = useContent();
+  const slides = heroSlides.length > 0 ? heroSlides : defaultSlides;
+  
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [headerHeight, setHeaderHeight] = useState(80);
@@ -63,13 +66,13 @@ const Hero = () => {
 
   const handlePrev = () => {
     setIsAutoScrolling(false);
-    setCurrentIndex(prev => (prev === 0 ? projects.length - 1 : prev - 1));
+    setCurrentIndex(prev => (prev === 0 ? slides.length - 1 : prev - 1));
     setTimeout(() => setIsAutoScrolling(true), 5000);
   };
 
   const handleNext = () => {
     setIsAutoScrolling(false);
-    setCurrentIndex(prev => (prev === projects.length - 1 ? 0 : prev + 1));
+    setCurrentIndex(prev => (prev === slides.length - 1 ? 0 : prev + 1));
     setTimeout(() => setIsAutoScrolling(true), 5000);
   };
 
@@ -77,7 +80,7 @@ const Hero = () => {
     if (!isAutoScrolling) return;
     
     const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev === projects.length - 1 ? 0 : prev + 1));
+      setCurrentIndex(prev => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 5000);
     return () => clearInterval(interval);
   }, [isAutoScrolling]);
@@ -97,12 +100,14 @@ const Hero = () => {
         minHeight: `calc(100vh - ${headerHeight}px)`
       }}
     >
+      <div className={styles.decorativeBlob}></div>
+      
       <div className={styles.heroContainer}>
         <div className={styles.heroContent}>
           <motion.div 
             className={styles.textContent}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.h1 
@@ -111,7 +116,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
-              Welcome to <span className={styles.highlight}>Hydroseal Innovations</span>
+              Welcome to Hydroseal <span className={styles.highlight}>Innovations</span>
             </motion.h1>
             
             <motion.p 
@@ -130,10 +135,10 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <div className={styles.buttons}>
-                <Link href="/quote" className={styles.primaryButton}>
+                <Link to="/quote" className={styles.primaryButton}>
                   Get a Free Quote
                 </Link>
-                <Link href="/services" className={styles.secondaryButton}>
+                <Link to="/services" className={styles.secondaryButton}>
                   Our Services
                 </Link>
               </div>
@@ -153,61 +158,63 @@ const Hero = () => {
               >
                 <div className={styles.slideContainer}>
                   <motion.div
-                    key={projects[currentIndex].id}
+                    key={slides[currentIndex].id}
                     className={styles.slide}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.6 }}
                   >
                     <div className={styles.imageWrapper}>
-                      <Image
-                        src={projects[currentIndex].src}
-                        alt={projects[currentIndex].alt}
-                        fill
+                      <img
+                        src={slides[currentIndex].src}
+                        alt=""
                         className={styles.image}
-                        priority
                       />
+
                       <div className={styles.imageContent}>
-                        <h3>{projects[currentIndex].title}</h3>
-                        <p>{projects[currentIndex].desc}</p>
-                        <Link 
-                          href={projects[currentIndex].link} 
-                          className={styles.detailsButton}
-                        >
-                          View Details <FaChevronRight className={styles.linkIcon} />
-                        </Link>
+                        <h3>{slides[currentIndex].title}</h3>
+                        <p>{slides[currentIndex].desc}</p>
                       </div>
                     </div>
                   </motion.div>
                 </div>
 
                 <div className={styles.controls}>
-                  <button 
-                    onClick={handlePrev} 
-                    className={styles.navButton}
-                    aria-label="Previous project"
+                  <Link 
+                    to={slides[currentIndex].link || '/services'} 
+                    className={styles.detailsButton}
                   >
-                    <FaChevronLeft />
-                  </button>
-                  
-                  <div className={styles.dots}>
-                    {projects.map((_, index) => (
-                      <button
-                        key={index}
-                        className={`${styles.dot} ${currentIndex === index ? styles.active : ''}`}
-                        onClick={() => setCurrentIndex(index)}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    ))}
+                    View Details <FaChevronRight className={styles.linkIcon} />
+                  </Link>
+
+                  <div className={styles.navGroup}>
+                    <button 
+                      onClick={handlePrev} 
+                      className={styles.navButton}
+                      aria-label="Previous project"
+                    >
+                      <FaChevronLeft />
+                    </button>
+                    
+                    <div className={styles.dots}>
+                      {slides.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`${styles.dot} ${currentIndex === index ? styles.active : ''}`}
+                          onClick={() => setCurrentIndex(index)}
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                    
+                    <button 
+                      onClick={handleNext} 
+                      className={styles.navButton}
+                      aria-label="Next project"
+                    >
+                      <FaChevronRight />
+                    </button>
                   </div>
-                  
-                  <button 
-                    onClick={handleNext} 
-                    className={styles.navButton}
-                    aria-label="Next project"
-                  >
-                    <FaChevronRight />
-                  </button>
                 </div>
               </motion.div>
             </div>
@@ -216,16 +223,14 @@ const Hero = () => {
               className={styles.scrollIndicator}
               onClick={handleScrollDown}
               aria-label="Scroll down"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
             >
               <span>Explore More</span>
               <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
               >
                 <FaChevronDown />
               </motion.div>
