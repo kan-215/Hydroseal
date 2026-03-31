@@ -2,13 +2,18 @@
 import styles from '../styles/header.module.scss';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { FiMenu, FiX, FiPhone, FiMail, FiFacebook, FiTwitter, FiInstagram } from 'react-icons/fi';
+import { createPortal } from 'react-dom';
+import { FiMenu, FiX, FiPhone, FiMail, FiFacebook, FiInstagram, FiArrowRight } from 'react-icons/fi';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Header = () => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
@@ -17,8 +22,9 @@ const Header = () => {
   }, []);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
-    if (!isOpen) document.body.style.overflow = 'hidden';
+    const newState = !isOpen;
+    setIsOpen(newState);
+    if (newState) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   };
 
@@ -26,6 +32,38 @@ const Header = () => {
     setIsOpen(false);
     document.body.style.overflow = 'unset';
   };
+
+  const NavigationContent = ({ isMobile = false }) => (
+    <>
+      <div className={styles.mobileNavHeader}>
+        <img src="/logo.jpg" alt="Logo" width={60} height={60} />
+        <h3>Hydroseal</h3>
+      </div>
+
+      <div className={styles.navLinks}>
+        <Link to="/" className={styles.navLink} onClick={closeMenu}>Home</Link>
+        <Link to="/services" className={styles.navLink} onClick={closeMenu}>Services</Link>
+        <Link to="/about" className={styles.navLink} onClick={closeMenu}>About</Link>
+        <Link to="/blog" className={styles.navLink} onClick={closeMenu}>Blog</Link>
+        <Link to="/contact" className={styles.navLink} onClick={closeMenu}>Contact</Link>
+      </div>
+
+      <Link to="/quote" className={styles.quoteButton} onClick={closeMenu}>Get Free Quote</Link>
+
+      <div className={styles.mobileNavFooter}>
+        <div className={styles.contactInfo}>
+          <a href="tel:+254700000000"><FiPhone /> +254 700 000 000</a>
+          <a href="mailto:info@hydroseal.co.ke"><FiMail /> info@hydroseal.co.ke</a>
+        </div>
+        <div className={styles.socials}>
+          <a href="#"><FiFacebook /></a>
+          <a href="#"><FaXTwitter /></a>
+          <a href="#"><FiInstagram /></a>
+        </div>
+
+      </div>
+    </>
+  );
 
   return (
     <>
@@ -55,40 +93,32 @@ const Header = () => {
             {isOpen ? <FiX size={26} /> : <FiMenu size={26} />}
           </button>
 
-          <nav className={`${styles.nav} ${isOpen ? styles.navOpen : ''}`}>
-            <div className={styles.mobileNavHeader}>
-              <img src="/logo.jpg" alt="Logo" width={60} height={60} />
-              <h3>Hydroseal</h3>
-            </div>
-
-            <div className={styles.navLinks}>
-              <Link to="/" className={styles.navLink} onClick={closeMenu}>Home</Link>
-              <Link to="/services" className={styles.navLink} onClick={closeMenu}>Services</Link>
-              <Link to="/about" className={styles.navLink} onClick={closeMenu}>About</Link>
-              <Link to="/blog" className={styles.navLink} onClick={closeMenu}>Blog</Link>
-              <Link to="/contact" className={styles.navLink} onClick={closeMenu}>Contact</Link>
-            </div>
-
-            <Link to="/quote" className={styles.quoteButton} onClick={closeMenu}>Get Free Quote</Link>
-
-            <div className={styles.mobileNavFooter}>
-              <div className={styles.contactInfo}>
-                <a href="tel:+254700000000"><FiPhone /> +254 700 000 000</a>
-                <a href="mailto:info@hydroseal.co.ke"><FiMail /> info@hydroseal.co.ke</a>
-              </div>
-              <div className={styles.socials}>
-                <a href="#"><FiFacebook /></a>
-                <a href="#"><FiTwitter /></a>
-                <a href="#"><FiInstagram /></a>
-              </div>
-            </div>
+          {/* Desktop Navigation - Always in Header */}
+          <nav className={styles.nav}>
+            <NavigationContent />
           </nav>
         </div>
       </header>
-      {isOpen && <div className={styles.menuBackdrop} onClick={closeMenu} />}
+
+      {/* Mobile Navigation Portal - Isolated from Header Blurs */}
+      {mounted && isOpen && createPortal(
+        <>
+          <div className={styles.menuBackdrop} onClick={closeMenu} />
+          <nav className={`${styles.navMobile} ${isOpen ? styles.navOpen : ''}`}>
+            <button 
+              className={styles.mobileCloseToggle} 
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              <FiX size={32} />
+            </button>
+            <NavigationContent isMobile />
+          </nav>
+        </>,
+        document.body
+      )}
     </>
   );
 };
 
-
-export default Header;
+export default Header;

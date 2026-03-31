@@ -8,13 +8,13 @@ import {
   FaEnvelope, 
   FaPaperPlane, 
   FaClock,
-  FaTwitter,
   FaFacebookF,
   FaInstagram,
   FaTiktok,
   FaLinkedinIn,
   FaWhatsapp
 } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 import { useSearchParams } from 'react-router-dom';
 
@@ -146,8 +146,9 @@ const ContactPage = () => {
             <h3>Follow Us</h3>
             <div className={styles.socialIcons}>
               <a href="https://twitter.com/hydrosealinno" target="_blank" rel="noopener noreferrer">
-                <FaTwitter />
+                <FaXTwitter />
               </a>
+
               <a href="https://facebook.com/HydrosealInnovations" target="_blank" rel="noopener noreferrer">
                 <FaFacebookF />
               </a>

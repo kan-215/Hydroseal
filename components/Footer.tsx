@@ -11,6 +11,7 @@ import {
   FaEnvelope,
   FaPaperPlane
 } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import styles from '../styles/footer.module.scss';
 
@@ -52,8 +53,9 @@ const Footer = () => {
             <h4 className={styles.linksTitle}>Follow Us</h4>
             <div className={styles.socialIcons}>
               <a href="https://x.com/hydrosealinno" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Twitter">
-                <FaTwitter className={styles.socialIconSvg} />
+                <FaXTwitter className={styles.socialIconSvg} />
               </a>
+
               <a href="https://facebook.com/hydrosealinnovations" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
                 <FaFacebookF className={styles.socialIconSvg} />
               </a>

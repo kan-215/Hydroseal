@@ -21,11 +21,21 @@ $mobile-breakpoint: 768px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   &.scrolled {
+
     background: rgba($primary-blue, 0.98);
     padding: 0.8rem 0;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
+
+  &.headerOpen {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+  }
 }
+
 
 .container {
   width: 90%;
@@ -99,42 +109,73 @@ $mobile-breakpoint: 768px;
 
   @media (max-width: $mobile-breakpoint) {
     display: block;
+    z-index: 10000; // Always on top
+    position: relative;
   }
 }
+
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative; // Desktop base position
 
   @media (max-width: $mobile-breakpoint) {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, rgba($primary-blue, 0.98) 0%, rgba(#001a33, 1) 100%);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 7rem 1.5rem 4rem;
-    z-index: 1000;
-    visibility: hidden;
-    opacity: 0;
-    transform: scale(1.1);
-    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-
-    &.navOpen {
-      visibility: visible;
-      opacity: 1;
-      transform: scale(1);
-    }
+    display: none;
   }
 }
+
+// Separated Mobile Navigation (Portaled to Body)
+.navMobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba($primary-blue, 1) 0%, rgba(#001a33, 1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: calc(6.5rem + env(safe-area-inset-top)) 2rem 4rem;
+  z-index: 99999;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &.navOpen {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileCloseToggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  z-index: 100001;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: rotate(90deg) scale(1.1);
+    color: rgba($white, 0.8);
+  }
+}
+
+
 
 
 .mobileNavHeader {
@@ -164,14 +205,17 @@ $mobile-breakpoint: 768px;
 }
 
 .navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
   @media (max-width: $mobile-breakpoint) {
-    display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
     padding: 0;
   }
 }
+
 
 .navLink {
   position: relative;
@@ -332,11 +376,12 @@ $mobile-breakpoint: 768px;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  z-index: 999;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 9998;
   animation: fadeIn 0.4s ease forwards;
 }
+
 
 @keyframes fadeIn {
   from { opacity: 0; }
