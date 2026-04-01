@@ -105,7 +105,7 @@ $radius-full: 9999px;
   position: relative;
   display: inline-block;
   width: fit-content;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -324,20 +324,20 @@ $radius-full: 9999px;
   gap: 0.6rem;
   background-color: $primary;
   color: $white;
-  padding: 0.7rem 1.6rem;
+  padding: 0.6rem 1.3rem; // Reduced from 0.7rem 1.6rem
   border-radius: $radius-full;
   font-weight: 700;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid $primary;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.9rem; // Reduced from 0.95rem
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  margin-top: 1rem;
+  margin-top: 0; // Removed top margin to ensure alignment in flex container
 
   @media (max-width: 480px) {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0.45rem 1.1rem; // Further reduced for tiny screens
+    font-size: 0.82rem;
   }
 
 
@@ -364,17 +364,20 @@ $radius-full: 9999px;
   bottom: 1.5rem;
   left: 0;
   right: 0;
-  padding: 0 1.5rem; // Reduced base padding for safety
+  padding: 0 1.5rem;
   display: flex;
-  justify-content: space-between; 
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center; // Centered instead of space-between
+  gap: 2rem; // Base gap
   align-items: center;
-  z-index: 5;
+  z-index: 10;
   box-sizing: border-box;
 
   @media (max-width: 480px) {
-    padding: 0 0.75rem;
+    padding: 0 0.5rem;
     bottom: 0.8rem;
-    gap: 0.3rem;
+    gap: 1rem; // Reduced gap for small screens
   }
 }
 
@@ -386,7 +389,7 @@ $radius-full: 9999px;
   gap: 1.2rem;
 
   @media (max-width: 480px) {
-    gap: 0.7rem;
+    gap: 0.5rem; // Reduced from 0.7rem
   }
 }
 
@@ -428,6 +431,10 @@ $radius-full: 9999px;
 .dots {
   display: flex;
   gap: 0.8rem;
+
+  @media (max-width: 480px) {
+    gap: 0.4rem; // Reduced gap for dots on mobile
+  }
 }
 
 .dot {
@@ -480,9 +487,5 @@ $radius-full: 9999px;
     font-size: 1.4rem;
     color: $primary;
   }
-
-  &:hover {
-    color: $primary;
-    transform: translateY(5px);
-  }
 }
+

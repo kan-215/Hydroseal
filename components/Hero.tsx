@@ -7,42 +7,42 @@ import { useEffect, useState } from 'react';
 import { useContent } from '../src/contexts/ContentContext';
 
 const defaultSlides = [
-  { 
-    id: '1', 
-    src: '/concreate.jpg', 
-    alt: 'Concrete Water Tank Construction', 
+  {
+    id: '1',
+    src: '/concreate.jpg',
+    alt: 'Concrete Water Tank Construction',
     title: 'Concrete Tank Solutions',
     desc: 'Professional concrete water tank services',
     link: '/services#concrete-tanks'
   },
-  { 
-    id: '2', 
-    src: '/construction1.jpg', 
-    alt: 'Water Tank Installation', 
+  {
+    id: '2',
+    src: '/construction1.jpg',
+    alt: 'Water Tank Installation',
     title: 'New Tank Installation',
     desc: 'Custom tank design and installation',
     link: '/services#installation'
   },
-  { 
-    id: '3', 
-    src: '/plat.jpeg', 
-    alt: 'Tank Platform Construction', 
+  {
+    id: '3',
+    src: '/plat.jpeg',
+    alt: 'Tank Platform Construction',
     title: 'Platform Construction',
     desc: 'Sturdy elevated tank platforms',
     link: '/services#platforms'
   },
-  { 
-    id: '4', 
-    src: '/steel4.jpeg', 
-    alt: 'Steel Water Tanks', 
+  {
+    id: '4',
+    src: '/steel4.jpeg',
+    alt: 'Steel Water Tanks',
     title: 'Steel Tank Solutions',
     desc: 'Durable steel water tanks',
     link: '/services#steel-tanks'
   },
-  { 
-    id: '5', 
-    src: '/waterproofing.jpg', 
-    alt: 'Tank Waterproofing', 
+  {
+    id: '5',
+    src: '/waterproofing.jpg',
+    alt: 'Tank Waterproofing',
     title: 'Waterproofing Services',
     desc: 'Leak-proof tank solutions',
     link: '/services#waterproofing'
@@ -52,7 +52,7 @@ const defaultSlides = [
 const Hero = () => {
   const { heroSlides, loading } = useContent();
   const slides = heroSlides.length > 0 ? heroSlides : defaultSlides;
-  
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [headerHeight, setHeaderHeight] = useState(80);
@@ -78,7 +78,7 @@ const Hero = () => {
 
   useEffect(() => {
     if (!isAutoScrolling) return;
-    
+
     const interval = setInterval(() => {
       setCurrentIndex(prev => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 5000);
@@ -93,24 +93,24 @@ const Hero = () => {
   };
 
   return (
-    <section 
+    <section
       className={styles.hero}
-      style={{ 
+      style={{
         paddingTop: `${headerHeight}px`,
         minHeight: `calc(100vh - ${headerHeight}px)`
       }}
     >
       <div className={styles.decorativeBlob}></div>
-      
+
       <div className={styles.heroContainer}>
         <div className={styles.heroContent}>
-          <motion.div 
+          <motion.div
             className={styles.textContent}
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.h1 
+            <motion.h1
               className={styles.title}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -118,8 +118,8 @@ const Hero = () => {
             >
               Welcome to Hydroseal <span className={styles.highlight}>Innovations</span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               className={styles.description}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -127,8 +127,8 @@ const Hero = () => {
             >
               Secure your water supply with Kenya’s premier experts in concrete and steel water tank design, construction, platform building, repair, and maintenance. From custom tank designs to sturdy platforms and leak repairs, we provide innovative, reliable solutions for all your water storage needs.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               className={styles.ctaGroup}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -150,7 +150,7 @@ const Hero = () => {
 
           <div className={styles.gallerySection}>
             <div className={styles.galleryWrapper}>
-              <motion.div 
+              <motion.div
                 className={styles.gallery}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -180,22 +180,22 @@ const Hero = () => {
                 </div>
 
                 <div className={styles.controls}>
-                  <Link 
-                    to={slides[currentIndex].link || '/services'} 
+                  <Link
+                    to={slides[currentIndex].link || '/services'}
                     className={styles.detailsButton}
                   >
                     View Details <FaChevronRight className={styles.linkIcon} />
                   </Link>
 
                   <div className={styles.navGroup}>
-                    <button 
-                      onClick={handlePrev} 
+                    <button
+                      onClick={handlePrev}
                       className={styles.navButton}
                       aria-label="Previous project"
                     >
                       <FaChevronLeft />
                     </button>
-                    
+
                     <div className={styles.dots}>
                       {slides.map((_, index) => (
                         <button
@@ -206,9 +206,9 @@ const Hero = () => {
                         />
                       ))}
                     </div>
-                    
-                    <button 
-                      onClick={handleNext} 
+
+                    <button
+                      onClick={handleNext}
                       className={styles.navButton}
                       aria-label="Next project"
                     >
@@ -219,7 +219,7 @@ const Hero = () => {
               </motion.div>
             </div>
 
-            <motion.button 
+            <motion.button
               className={styles.scrollIndicator}
               onClick={handleScrollDown}
               aria-label="Scroll down"

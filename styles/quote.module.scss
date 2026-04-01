@@ -1,71 +1,19 @@
 .formContainer {
-    width: 80%;
-    margin: 0 auto;
-    max-width: 600px;
-    padding: 2rem;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-  
-    label {
-      font-weight: bold;
-    }
-  
-    input,
-    select,
-    button {
-      padding: 0.75rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-  
-    button {
-      background-color: #00b4d8;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: #0077b6;
-      }
-    }
-  
-    .toggleButton {
-      background-color: #f1f1f1;
-      color: #00b4d8;
-      border: 1px solid #ccc;
-      cursor: pointer;
-      padding: 0.5rem;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: #f0f0f0;
-      }
-    }
-  
-    .servicesSelect {
-      display: block;
-      margin-top: 1rem;
-    }
-  }.formContainer {
-    width: 90%;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 2.5rem;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
+  width: 90%;
+  max-width: 700px;
+  margin: 100px auto 3rem; // Added top margin for header clearance
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+
+  @media (max-width: 768px) {
+    margin-top: 80px;
+    padding: 1.5rem;
+    width: 95%;
   }
+}
   
   .formTitle {
     text-align: center;
