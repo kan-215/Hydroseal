@@ -79,8 +79,8 @@ const Header = () => {
                 className={styles.logoImage}
               />
               <div className={styles.logoText}>
-                <span className={styles.logoMain}>Hydroseal</span>
-                <span className={styles.logoSub}>Innovations</span>
+                <span className={styles.logoMain}>Hydroseal Innovations</span>
+                <span className={styles.logoSub}>Effective Concrete and Steel Water Tank Repair, Cleaning &amp; Disinfection</span>
               </div>
             </div>
           </Link>

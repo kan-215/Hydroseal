@@ -77,20 +77,25 @@ $mobile-breakpoint: 768px;
 }
 
 .logoMain {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: $white;
   line-height: 1.2;
   text-decoration: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .logoSub {
-  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
   font-weight: 400;
+  font-style: normal;
   color: rgba($white, 0.85);
-  letter-spacing: 0.5px;
-  margin-top: 0.2rem;
+  letter-spacing: 0.2px;
+  margin-top: 0.15rem;
+  line-height: 1.35;
+  max-width: 300px;
 }
 
 .menuToggle {

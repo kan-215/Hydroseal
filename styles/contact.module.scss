@@ -1,27 +1,31 @@
-// Variables
+// Variables — Dark navy theme (restored)
 $primary: #0066cc;
-$primary-dark: #003366;
+$primary-dark: #001a2e;
 $accent: #00aaff;
-$light-bg: #f8fafc;
+$dark-bg: #0a1628;
+$card-bg: #0d2137;
+$card-border: rgba(0, 170, 255, 0.15);
+$input-bg: rgba(0, 40, 80, 0.6);
+$input-border: rgba(0, 170, 255, 0.25);
 $white: #ffffff;
-$text-main: #2d3748;
-$text-muted: #4a5568;
+$text-light: #e2e8f0;
+$text-muted: #94a3b8;
 
 $radius-md: 12px;
 $radius-lg: 20px;
-$shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
+$shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.2);
+$shadow-md: 0 10px 25px rgba(0, 0, 0, 0.3);
 
 .contact {
-  padding-top: 80px; // Offset for header
-  background: linear-gradient(to bottom, #f0f7ff 0%, #ffffff 100%);
+  padding-top: 80px;
+  background: linear-gradient(to bottom, #0a1628 0%, #0d1f35 50%, #0a1628 100%);
   min-height: 100vh;
-  color: $text-main;
+  color: $text-light;
   font-family: 'Inter', sans-serif;
 
   .hero {
     text-align: center;
-    padding: 8rem 2rem 5rem; // Increased top padding for better breathing room
+    padding: 8rem 2rem 5rem;
     max-width: 900px;
     margin: 0 auto;
 
@@ -29,7 +33,7 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
       font-size: clamp(2.5rem, 5vw, 3.5rem);
       margin-bottom: 1.5rem;
       font-weight: 800;
-      color: $primary-dark;
+      color: $white;
       letter-spacing: -1px;
     }
 
@@ -56,11 +60,11 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
   }
 
   .form {
-    background: $white;
+    background: $card-bg;
     padding: 3rem;
     border-radius: $radius-lg;
     box-shadow: $shadow-md;
-    border: 1px solid #e2e8f0;
+    border: 1px solid $card-border;
 
     .formGroup {
       margin-bottom: 2rem;
@@ -68,7 +72,7 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
       label {
         display: block;
         margin-bottom: 0.8rem;
-        color: $primary-dark;
+        color: $accent;
         font-weight: 700;
         font-size: 0.95rem;
       }
@@ -78,20 +82,20 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
         padding: 1rem 1.2rem;
         font-size: 1rem;
         border-radius: $radius-md;
-        border: 2px solid #edf2f7;
-        background: #fdfdfd;
-        color: $text-main;
+        border: 2px solid $input-border;
+        background: $input-bg;
+        color: $text-light;
         transition: all 0.3s ease;
 
         &::placeholder {
-          color: #a0aec0;
+          color: #5a7a94;
         }
 
         &:focus {
           outline: none;
-          border-color: $primary;
-          background: $white;
-          box-shadow: 0 0 0 4px rgba($primary, 0.1);
+          border-color: $accent;
+          background: rgba(0, 50, 100, 0.7);
+          box-shadow: 0 0 0 4px rgba($accent, 0.1);
         }
       }
 
@@ -108,24 +112,25 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
           min-height: 60px;
           padding: 0.8rem;
           border-radius: $radius-md;
-          border: 2px solid #edf2f7;
-          background: #fdfdfd;
-          color: $text-main;
+          border: 2px solid $input-border;
+          background: $input-bg;
+          color: $text-light;
           cursor: pointer;
 
           option {
             padding: 0.8rem;
-            color: $text-main;
+            color: $text-light;
+            background: $card-bg;
             
             &:checked {
-              background: rgba($primary, 0.1);
-              color: $primary;
+              background: rgba($accent, 0.25);
+              color: $accent;
             }
           }
 
           &:focus {
             outline: none;
-            border-color: $primary;
+            border-color: $accent;
           }
         }
 
@@ -136,20 +141,20 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
           margin-top: 1rem;
           
           span {
-            background: rgba($primary, 0.1);
-            color: $primary;
+            background: rgba($accent, 0.15);
+            color: $accent;
             padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            border: 1px solid rgba($primary, 0.2);
+            border: 1px solid rgba($accent, 0.25);
             
             button {
               background: none;
               border: none;
-              color: $primary;
+              color: $accent;
               margin-left: 0.6rem;
               cursor: pointer;
               font-size: 1.1rem;
@@ -174,7 +179,7 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
       gap: 0.8rem;
       width: 100%;
       padding: 1.2rem;
-      background: linear-gradient(135deg, $primary 0%, #3182ce 100%);
+      background: linear-gradient(135deg, $primary 0%, $accent 100%);
       color: $white;
       border: none;
       font-size: 1.1rem;
@@ -182,11 +187,11 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
       border-radius: $radius-md;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 8px 20px rgba($primary, 0.2);
+      box-shadow: 0 8px 20px rgba($primary, 0.3);
 
       &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 25px rgba($primary, 0.3);
+        box-shadow: 0 12px 25px rgba($accent, 0.3);
         background: linear-gradient(135deg, darken($primary, 5%) 0%, $primary 100%);
       }
 
@@ -202,16 +207,16 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
     gap: 2.5rem;
 
     .contactCard, .socialLinks {
-      background: $white;
+      background: $card-bg;
       padding: 3rem;
       border-radius: $radius-lg;
       box-shadow: $shadow-md;
-      border: 1px solid #e2e8f0;
+      border: 1px solid $card-border;
 
       h3 {
         font-size: 1.8rem;
         margin-bottom: 2rem;
-        color: $primary-dark;
+        color: $white;
         font-weight: 800;
       }
     }
@@ -222,7 +227,7 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
       margin-bottom: 2rem;
 
       .contactIcon {
-        color: $primary;
+        color: $accent;
         font-size: 1.6rem;
         min-width: 1.6rem;
       }
@@ -247,18 +252,18 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
         width: 50px;
         height: 50px;
         border-radius: 12px;
-        background: $light-bg;
-        color: $primary;
+        background: rgba($accent, 0.1);
+        color: $accent;
         font-size: 1.4rem;
         transition: all 0.3s ease;
-        border: 1px solid #e2e8f0;
+        border: 1px solid $card-border;
 
         &:hover {
-          background: $primary;
+          background: $accent;
           color: $white;
           transform: translateY(-5px);
-          box-shadow: 0 10px 15px rgba($primary, 0.15);
-          border-color: $primary;
+          box-shadow: 0 10px 15px rgba($accent, 0.2);
+          border-color: $accent;
         }
       }
     }
@@ -267,7 +272,7 @@ $shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
       border-radius: $radius-lg;
       overflow: hidden;
       box-shadow: $shadow-md;
-      border: 1px solid #e2e8f0;
+      border: 1px solid $card-border;
       height: 400px;
 
       iframe {

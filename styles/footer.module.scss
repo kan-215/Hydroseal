@@ -79,6 +79,8 @@ $light-gray: #f9f9f9;
   margin-bottom: 1.5rem;
   position: relative;
   padding-bottom: 0.8rem;
+  color: $white;
+  font-weight: 700;
 
   &::after {
     content: '';
