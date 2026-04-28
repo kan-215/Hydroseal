@@ -130,6 +130,22 @@ const BlogAdmin: React.FC = () => {
     else { showToast('Post saved!'); fetchPosts(); }
   };
 
+  const applyFormatting = (target: HTMLTextAreaElement, type: 'bold' | 'italic', updateFn: (val: string) => void) => {
+    const start = target.selectionStart;
+    const end = target.selectionEnd;
+    const text = target.value;
+    const marker = type === 'bold' ? '**' : '*';
+    const markerLen = marker.length;
+    
+    const newValue = text.substring(0, start) + marker + text.substring(start, end) + marker + text.substring(end);
+    updateFn(newValue);
+    
+    requestAnimationFrame(() => {
+      target.focus();
+      target.setSelectionRange(start + markerLen, end + markerLen);
+    });
+  };
+
   const deletePost = async (id: string) => {
     if (!confirm('Delete this post?')) return;
     setDeleting(id);
@@ -197,8 +213,30 @@ const BlogAdmin: React.FC = () => {
                       <input className="admin-input" value={post.date} onChange={e => updatePost(post.id, 'date', e.target.value)} />
                     </div>
                     <div className="admin-field">
-                      <label className="admin-label">Excerpt</label>
-                      <textarea className="admin-textarea" rows={3} value={post.excerpt} onChange={e => updatePost(post.id, 'excerpt', e.target.value)} />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                        <label className="admin-label" style={{ margin: 0 }}>Excerpt</label>
+                        <span style={{ fontSize: '0.7rem', color: '#64748b' }}>Shortcuts: <b>Ctrl+B</b> (Bold), <b>Ctrl+I</b> (Italic)</span>
+                      </div>
+                      <textarea 
+                        className="admin-textarea" 
+                        rows={3} 
+                        value={post.excerpt} 
+                        onChange={e => updatePost(post.id, 'excerpt', e.target.value)}
+                        onKeyDown={(e) => {
+                          const isB = e.key?.toLowerCase() === 'b' || e.code === 'KeyB';
+                          const isI = e.key?.toLowerCase() === 'i' || e.code === 'KeyI';
+                          const modifier = e.ctrlKey || e.metaKey || e.altKey;
+
+                          if (modifier && isB) {
+                            e.preventDefault(); e.stopPropagation();
+                            applyFormatting(e.currentTarget, 'bold', (val) => updatePost(post.id, 'excerpt', val));
+                          }
+                          if (modifier && isI) {
+                            e.preventDefault(); e.stopPropagation();
+                            applyFormatting(e.currentTarget, 'italic', (val) => updatePost(post.id, 'excerpt', val));
+                          }
+                        }}
+                      />
                     </div>
                   </div>
                   <div>
@@ -217,14 +255,33 @@ const BlogAdmin: React.FC = () => {
                   {post.content.map((para, pIdx) => (
                     <div key={pIdx} className={styles.contentItem}>
                       <span className={styles.contentIndex}>{pIdx + 1}</span>
-                      <textarea
-                        className="admin-textarea"
-                        rows={3}
-                        value={para}
-                        onChange={e => updateContent(post.id, pIdx, e.target.value)}
-                        style={{ marginBottom: '0.5rem' }}
-                      />
-                      <button className="admin-btn-danger" style={{ marginLeft: '0.5rem', alignSelf: 'center' }} onClick={() => removeContentParagraph(post.id, pIdx)}>
+                      <div style={{ flex: 1 }}>
+                        <textarea
+                          className="admin-textarea"
+                          rows={3}
+                          value={para}
+                          onChange={e => updateContent(post.id, pIdx, e.target.value)}
+                          onKeyDown={(e) => {
+                            const isB = e.key?.toLowerCase() === 'b' || e.code === 'KeyB';
+                            const isI = e.key?.toLowerCase() === 'i' || e.code === 'KeyI';
+                            const modifier = e.ctrlKey || e.metaKey || e.altKey;
+
+                            if (modifier && isB) {
+                              e.preventDefault(); e.stopPropagation();
+                              applyFormatting(e.currentTarget, 'bold', (val) => updateContent(post.id, pIdx, val));
+                            }
+                            if (modifier && isI) {
+                              e.preventDefault(); e.stopPropagation();
+                              applyFormatting(e.currentTarget, 'italic', (val) => updateContent(post.id, pIdx, val));
+                            }
+                          }}
+                          style={{ marginBottom: '0.2rem' }}
+                        />
+                        <div style={{ fontSize: '0.65rem', color: '#64748b', textAlign: 'right' }}>
+                          Highlight text + <b>Ctrl+B</b> or <b>Alt+B</b> to bold
+                        </div>
+                      </div>
+                      <button className="admin-btn-danger" style={{ marginLeft: '0.5rem', alignSelf: 'flex-start', marginTop: '0.5rem' }} onClick={() => removeContentParagraph(post.id, pIdx)}>
                         <FiTrash2 />
                       </button>
                     </div>

@@ -50,19 +50,32 @@ const BlogPost: React.FC = () => {
 
       <div className={styles.postContent} data-aos="fade-up">
         {post.content.map((paragraph, index) => {
+          const renderMarkdown = (text: string) => {
+            // Match bold (**text**) or italic (*text*)
+            const parts = text.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+            return parts.map((part, i) => {
+              if (part.startsWith('**') && part.endsWith('**')) {
+                return <strong key={i}>{part.slice(2, -2)}</strong>;
+              }
+              if (part.startsWith('*') && part.endsWith('*')) {
+                return <em key={i}>{part.slice(1, -1)}</em>;
+              }
+              return part;
+            });
+          };
+
           // If the paragraph is a numbered list item (starts with digits followed by a dot)
           const listMatch = paragraph.match(/^(\d+\.)\s*(.*)/);
           if (listMatch) {
             return (
               <div key={index} className={styles.listItem}>
                 <span className={styles.listMarker}>{listMatch[1]}</span>
-                <span className={styles.listText}>{listMatch[2]}</span>
+                <span className={styles.listText}>{renderMarkdown(listMatch[2])}</span>
               </div>
             );
           }
-          return <p key={index}>{paragraph}</p>;
+          return <p key={index}>{renderMarkdown(paragraph)}</p>;
         })}
-
       </div>
 
       {post.images && post.images.length > 1 && (

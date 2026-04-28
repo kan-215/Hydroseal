@@ -3,8 +3,9 @@ import styles from '../styles/header.module.scss';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { FiMenu, FiX, FiPhone, FiMail, FiFacebook, FiInstagram, FiArrowRight } from 'react-icons/fi';
+import { FiMenu, FiX, FiPhone, FiMail } from 'react-icons/fi';
 import { FaXTwitter } from 'react-icons/fa6';
+import { FaFacebookF, FaInstagram, FaTiktok, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 
 const Header = () => {
 
@@ -52,15 +53,18 @@ const Header = () => {
 
       <div className={styles.mobileNavFooter}>
         <div className={styles.contactInfo}>
-          <a href="tel:+254700000000"><FiPhone /> +254 700 000 000</a>
-          <a href="mailto:info@hydroseal.co.ke"><FiMail /> info@hydroseal.co.ke</a>
+          <a href="tel:+254799087048"><FiPhone /> +254 799 087 048</a>
+          <a href="mailto:hydrosealinnovations@gmail.com"><FiMail /> hydrosealinnovations@gmail.com</a>
         </div>
+        <div className={styles.socialsLabel}>Follow Us</div>
         <div className={styles.socials}>
-          <a href="#"><FiFacebook /></a>
-          <a href="#"><FaXTwitter /></a>
-          <a href="#"><FiInstagram /></a>
+          <a href="https://wa.me/254799087048" target="_blank" rel="noopener noreferrer" title="WhatsApp"><FaWhatsapp /></a>
+          <a href="https://facebook.com/HydrosealInnovations" target="_blank" rel="noopener noreferrer" title="Facebook"><FaFacebookF /></a>
+          <a href="https://instagram.com/hydro.sealinnovations" target="_blank" rel="noopener noreferrer" title="Instagram"><FaInstagram /></a>
+          <a href="https://tiktok.com/@hydrosealinnovati" target="_blank" rel="noopener noreferrer" title="TikTok"><FaTiktok /></a>
+          <a href="https://linkedin.com/company/HydrosealInnovations" target="_blank" rel="noopener noreferrer" title="LinkedIn"><FaLinkedinIn /></a>
+          <a href="https://twitter.com/hydrosealinno" target="_blank" rel="noopener noreferrer" title="X / Twitter"><FaXTwitter /></a>
         </div>
-
       </div>
     </>
   );
