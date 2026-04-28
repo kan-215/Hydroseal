@@ -18,7 +18,7 @@ interface BlogPost {
 }
 
 const emptyPost = (): BlogPost => ({
-  id: Date.now().toString(),
+  id: crypto.randomUUID(),
   slug: '',
   title: '',
   image: '',
